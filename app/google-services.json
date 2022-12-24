@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "800818850143",
+    "firebase_url": "https://tugas-akhir-customization-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "tugas-akhir-customization",
+    "storage_bucket": "tugas-akhir-customization.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800818850143:android:0c12daa057220d54a3eeea",
+        "android_client_info": {
+          "package_name": "com.example.tugasakhirbaru"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "800818850143-0rgo35i1dqiar0i0ddc3uiq6f077olbo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHQj60N-ZTT8j4CpRiJ3zxFO1JXNSc0Mc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "800818850143-0rgo35i1dqiar0i0ddc3uiq6f077olbo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
