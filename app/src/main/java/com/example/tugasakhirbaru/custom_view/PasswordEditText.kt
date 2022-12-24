@@ -1,4 +1,4 @@
-package com.example.tugasakhirbaru.customView
+package com.example.tugasakhirbaru.custom_view
 
 import android.content.Context
 import android.graphics.Canvas

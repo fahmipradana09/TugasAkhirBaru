@@ -1,4 +1,4 @@
-package com.example.tugasakhirbaru.View
+package com.example.tugasakhirbaru.view
 
 import android.content.Intent
 import android.os.Bundle
