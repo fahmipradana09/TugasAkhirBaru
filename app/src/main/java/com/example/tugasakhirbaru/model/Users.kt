@@ -1,9 +1,16 @@
 package com.example.tugasakhirbaru.model
 
+import com.google.firebase.database.Exclude
+
 data class Users(
     var email: String = "",
+    var role: String = "",
     var username: String = "",
     var password: String = ""
 ) {
-    fun isBlank() = email.isBlank() || username.isBlank() || password.isBlank()
+    @Exclude
+    fun isRegistrationBlank() = email.isBlank() || username.isBlank() || password.isBlank()
+
+    @Exclude
+    fun isLoginBlank() = email.isBlank() || password.isBlank()
 }

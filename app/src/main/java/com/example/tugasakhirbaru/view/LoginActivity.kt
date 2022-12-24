@@ -1,46 +1,56 @@
 package com.example.tugasakhirbaru.view
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import com.example.tugasakhirbaru.R
 import com.example.tugasakhirbaru.databinding.ActivityLoginBinding
+import com.example.tugasakhirbaru.util.KotlinExt.openHomeActivity
+import com.example.tugasakhirbaru.util.KotlinExt.openRegisterActivity
+import com.example.tugasakhirbaru.util.ViewModelListener
+import com.example.tugasakhirbaru.util.constants.Constants
+import com.example.tugasakhirbaru.viewmodel.LoginViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), ViewModelListener {
     lateinit var binding: ActivityLoginBinding
-    lateinit var auth: FirebaseAuth
+
+    private val database: DatabaseReference by lazy {
+        FirebaseDatabase.getInstance().getReference("users")
+    }
+    private val auth: FirebaseAuth by lazy {
+        FirebaseAuth.getInstance()
+    }
+    private val viewModel: LoginViewModel by lazy {
+        LoginViewModel(auth, database, this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding = ActivityLoginBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
 
-        auth = FirebaseAuth.getInstance()
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+        binding.viewModel = viewModel
+
+        if (auth.currentUser != null) {
+            openHomeActivity()
+        }
 
         binding.tvRegisText.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.btnLogin.setOnClickListener {
-            val email = binding.userNameEditText.text.toString()
-            val password = binding.passwordEditText.text.toString()
-
-            RegisterFirebase(email, password)
+            openRegisterActivity()
         }
     }
 
-    private fun RegisterFirebase(email: String, password: String) {
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) {
-                if (it.isSuccessful) {
-                    Toast.makeText(this, "Login Berhasil", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, LoginActivity::class.java)
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(this, "${it.exception?.message}", Toast.LENGTH_SHORT).show()
-                }
-            }
+    override fun showMessage(message: String?, isLong: Boolean) {
+        Toast.makeText(this, message, if (isLong) Toast.LENGTH_LONG else Toast.LENGTH_SHORT).show()
     }
+
+    override fun navigateTo(param: String) {
+        if (param == Constants.HOME_PAGE) {
+            openHomeActivity()
+        }
+    }
+
 }
