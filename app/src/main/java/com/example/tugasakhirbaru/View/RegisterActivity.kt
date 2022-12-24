@@ -6,14 +6,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.tugasakhirbaru.R
-import com.example.tugasakhirbaru.databinding.RegistrationActivityBinding
+import com.example.tugasakhirbaru.databinding.ActivityRegisterBinding
 import com.example.tugasakhirbaru.viewmodel.RegisterViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
-class RegistActivity : AppCompatActivity(), RegisterViewModel.Listener {
-    lateinit var binding: RegistrationActivityBinding
+class RegisterActivity : AppCompatActivity(), RegisterViewModel.Listener {
+    lateinit var binding: ActivityRegisterBinding
 
     private val database: DatabaseReference by lazy {
         FirebaseDatabase.getInstance().getReference("users")
@@ -28,7 +28,7 @@ class RegistActivity : AppCompatActivity(), RegisterViewModel.Listener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.registration_activity)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_register)
         binding.viewModel = viewModel
     }
 

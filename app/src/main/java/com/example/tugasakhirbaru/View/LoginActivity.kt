@@ -19,7 +19,7 @@ class LoginActivity:AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         binding.tvRegisText.setOnClickListener {
-            val intent = Intent (this, RegistActivity::class.java)
+            val intent = Intent (this, RegisterActivity::class.java)
             startActivity(intent)
         }
 
