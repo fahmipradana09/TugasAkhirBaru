@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">TugasAkhirBaru</string>
     <string name="searching">Searching</string>
-    <string name="DummyNamaMakanan">Ini adalah Ayam</string>
+    <string name="DummyNamaMakanan">Ini adalah Ayam Barbeque</string>
     <string name="HargaMakanan">RP 20.000</string>
     <string name="recommendation">Recommendation</string>
     <string name="DummyDetailMakanan">Ricebox ini merupakan makanan kekinian anak milenial dengan rasa BBQ</string>
@@ -46,4 +46,5 @@
     <string name="menuyangterjual">Menu yang Terjual</string>
     <string name="length_character">Password harus memiliki setidaknya 6 karakter</string>
     <string name="usernamenEmail">Email</string>
+    <string name="menuBar">menuBar</string>
 </resources>

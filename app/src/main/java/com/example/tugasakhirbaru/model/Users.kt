@@ -4,7 +4,7 @@ import com.google.firebase.database.Exclude
 
 data class Users(
     var email: String = "",
-    var role: String = "",
+    var role: String = "users",
     var username: String = "",
     var password: String = ""
 ) {

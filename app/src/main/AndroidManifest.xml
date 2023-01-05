@@ -29,6 +29,9 @@
         <activity
             android:name=".view.HomeActivity"
             android:exported="false"/>
+        <activity
+            android:name=".view.DetailActivity"
+            android:exported="false"/>
        
     </application>
 
