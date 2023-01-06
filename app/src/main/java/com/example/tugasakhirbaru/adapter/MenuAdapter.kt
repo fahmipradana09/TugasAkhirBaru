@@ -1,53 +1,45 @@
 package com.example.tugasakhirbaru.adapter
 
-import android.util.Log
+import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tugasakhirbaru.R
+import com.bumptech.glide.Glide
+import com.example.tugasakhirbaru.databinding.MenuItemBinding
 import com.example.tugasakhirbaru.model.Menu
-import com.example.tugasakhirbaru.util.RecyclerViewClickListener
+import com.example.tugasakhirbaru.util.KotlinExt.openDetailActivity
 
-class MenuAdapter(private val menuList: ArrayList<Menu>) :
-    RecyclerView.Adapter<MenuAdapter.MenuViewHolder>(){
+class MenuAdapter(private val context: Context) :
+    RecyclerView.Adapter<MenuAdapter.MenuViewHolder>() {
+    private val menuList: ArrayList<Menu> = arrayListOf()
 
-
-    var listener: RecyclerViewClickListener? = null
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuViewHolder {
-        val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.menu_item, parent, false)
-        return MenuViewHolder(itemView)
-
+    fun setData(listData: List<Menu>) {
+        menuList.clear()
+        menuList.addAll(listData)
+        notifyDataSetChanged()
     }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuViewHolder =
+        MenuViewHolder(
+            MenuItemBinding.inflate(
+                LayoutInflater.from(context), parent, false
+            )
+        )
 
     override fun onBindViewHolder(holder: MenuViewHolder, position: Int) {
-        val currentitem = menuList[position]
-        holder.tvJudulMakanan.text = currentitem.menu
-        holder.tvHargaMakanan.text = currentitem.price
-//        holder.deskripsi.text = currentitem.description
-        holder.listMenu.setOnClickListener {
-            listener?.onItemClicked(it, currentitem)
-            Log.i("tes", "ini isi $listener")
+        val item = menuList[position]
+        holder.binding.item = item
+
+        if (item.imageExists()) {
+            Glide.with(context).load(item.picture).into(holder.binding.imageFood)
         }
 
+        holder.binding.cardFood.setOnClickListener {
+            context.openDetailActivity(item)
+        }
     }
 
-    override fun getItemCount(): Int {
-        return menuList.size
+    override fun getItemCount(): Int = menuList.size
 
-    }
-
-    class MenuViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvJudulMakanan: TextView = itemView.findViewById(R.id.tvJudulMakanan)
-        //        val deskripsi: TextView = itemView.findViewById(R.id.deskripsi)
-        val tvHargaMakanan: TextView = itemView.findViewById(R.id.tvHargaMakanan)
-        val listMenu: LinearLayout = itemView.findViewById(R.id.cardFood)
-
-    }
-
-
+    class MenuViewHolder(val binding: MenuItemBinding) : RecyclerView.ViewHolder(binding.root)
 }

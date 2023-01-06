@@ -1,7 +1,10 @@
 package com.example.tugasakhirbaru.util
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import com.example.tugasakhirbaru.model.Menu
+import com.example.tugasakhirbaru.util.constants.IntentNameExtra.MENU_EXTRA
 import com.example.tugasakhirbaru.view.DetailActivity
 import com.example.tugasakhirbaru.view.HomeActivity
 import com.example.tugasakhirbaru.view.LoginActivity
@@ -28,8 +31,9 @@ object KotlinExt {
         finish()
     }
 
-    fun Activity.openDetailActivity() {
+    fun Context.openDetailActivity(itemExtra: Menu) {
         Intent(this, DetailActivity::class.java).run {
+            putExtra(MENU_EXTRA, itemExtra)
             startActivity(this)
         }
     }

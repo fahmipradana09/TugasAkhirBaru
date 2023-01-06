@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:cardElevation="8dp"
-    android:layout_margin="10dp">
+<layout>
+    <data>
+        <variable
+            name="item"
+            type="com.example.tugasakhirbaru.model.Menu" />
+    </data>
 
-    <LinearLayout
-        android:id="@+id/cardFood"
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_margin="10dp"
+        app:cardElevation="8dp">
+
+        <LinearLayout
+            android:id="@+id/cardFood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent">
 
 
             <LinearLayout
@@ -33,11 +40,12 @@
                     android:id="@+id/tvJudulMakanan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:layout_marginStart= "4dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="4dp"
-                    android:text="@string/DummyNamaMakanan"
+                    android:singleLine="true"
+                    android:text="@{item.menu}"
+                    tools:text="@string/DummyNamaMakanan"
                     android:textColor="@color/black"
                     android:textSize="12sp"></TextView>
 
@@ -50,10 +58,12 @@
                     android:layout_marginBottom="4dp"
                     android:shadowColor="@color/black"
                     android:shadowRadius="2"
-                    android:text="@string/HargaMakanan"
+                    android:text="@{item.price}"
+                    tools:text="@string/HargaMakanan"
                     android:textColor="@color/yellow"
                     android:textSize="20sp"></TextView>
             </LinearLayout>
         </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
+</layout>
