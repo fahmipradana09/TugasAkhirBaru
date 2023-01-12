@@ -28,11 +28,15 @@
             android:exported="false"/>
         <activity
             android:name=".view.HomeActivity"
-            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
             android:exported="false"/>
         <activity
             android:name=".view.DetailActivity"
-            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+            android:exported="false"/>
+        <activity
+            android:name=".view.ProfileActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".view.EditProfileActivity"
             android:exported="false"/>
        
     </application>

@@ -34,7 +34,7 @@ class LoginViewModel(
             isLoading = false
 
             if (it.isSuccessful && !userId.isNullOrBlank()) {
-                database.child(userId).addListenerForSingleValueEvent(object : ValueEventListener {
+                 database.child(userId).addListenerForSingleValueEvent(object : ValueEventListener {
                         override fun onDataChange(snapshot: DataSnapshot) {
                             val user = snapshot.getValue(Users::class.java)
                             // NOTE: Simpan user ke SharedPreference nanti.

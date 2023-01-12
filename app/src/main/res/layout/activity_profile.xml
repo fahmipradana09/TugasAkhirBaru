@@ -1,28 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="item"
+            type="com.example.tugasakhirbaru.model.Users" />
+    </data>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".view.ProfileActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="411dp"
+    <include
+        layout="@layout/layout_toolbar"
+        android:layout_width="match_parent"
         android:layout_height="54dp"
-        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/ivLogo"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleTextView"
-            app:srcCompat="@drawable/logo_ricebox" />
-    </androidx.appcompat.widget.Toolbar>
+        app:layout_constraintTop_toTopOf="parent"
+        app:menuVisible="@{true}"/>
 
     <ImageView
         android:id="@+id/ivProfileAccount"
@@ -32,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:srcCompat="@drawable/ic_baseline_account_circle_24" />
+        android:src="@drawable/ic_baseline_account_circle_24" />
 
     <LinearLayout
         android:id="@+id/LLNameEmail"
@@ -49,7 +48,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="2"
-            android:text="@string/DummyNamaAccount"
+            android:text="@{item.username}"
+            tools:text="@string/DummyNamaAccount"
             android:textStyle="bold"
             android:textColor="@color/black"/>
 
@@ -57,7 +57,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:text="@string/DummyEmail"/>
+            android:text="@{item.email}"
+            tools:text="@string/DummyEmail"/>
     </LinearLayout>
 
     <LinearLayout
@@ -80,7 +81,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/DummyAlamatBaru" />
+            android:text="@{item.alamat}"
+            tools:text="@string/DummyAlamatBaru" />
     </LinearLayout>
 
     <LinearLayout
@@ -101,7 +103,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Dummyphonenumber"/>
+            android:text ="@{item.phone}"
+            tools:text="@string/Dummyphonenumber"/>
 
     </LinearLayout>
 
@@ -109,8 +112,8 @@
         android:id="@+id/btnEditProfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
         android:textColor="@color/black"
+        android:padding="4dp"
         android:text="@string/editProfile"
         android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -118,3 +121,4 @@
         app:layout_constraintEnd_toEndOf="parent"
        android:background="@drawable/roundedsquare"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

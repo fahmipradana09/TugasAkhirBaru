@@ -47,4 +47,21 @@
     <string name="length_character">Password harus memiliki setidaknya 6 karakter</string>
     <string name="usernamenEmail">Email</string>
     <string name="menuBar">menuBar</string>
+    <string name="logout">Logout</string>
+    <string name="profile">Profile</string>
+
+    <string-array name="filter_makanan">
+        <item>A-Z</item>
+        <item>Z-A</item>
+
+        <item>Low Calorie</item>
+        <item>High Calorie</item>
+
+<!--        <item>Low Carbo</item>-->
+<!--        <item>High Carbo</item>-->
+<!--        -->
+<!--        <item>Low Protein</item>-->
+<!--        <item>High Protein</item>-->
+
+    </string-array>
 </resources>

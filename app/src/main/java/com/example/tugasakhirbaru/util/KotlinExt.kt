@@ -5,10 +5,7 @@ import android.content.Context
 import android.content.Intent
 import com.example.tugasakhirbaru.model.Menu
 import com.example.tugasakhirbaru.util.constants.IntentNameExtra.MENU_EXTRA
-import com.example.tugasakhirbaru.view.DetailActivity
-import com.example.tugasakhirbaru.view.HomeActivity
-import com.example.tugasakhirbaru.view.LoginActivity
-import com.example.tugasakhirbaru.view.RegisterActivity
+import com.example.tugasakhirbaru.view.*
 
 object KotlinExt {
     fun Activity.openLoginActivity() {
@@ -37,4 +34,17 @@ object KotlinExt {
             startActivity(this)
         }
     }
+    fun Activity.openProfileActivity() {
+        Intent(this, ProfileActivity::class.java).run {
+            startActivity(this)
+        }
+    }
+    fun Activity.openEditProfileActivity() {
+        Intent(this, EditProfileActivity    ::class.java).run {
+            startActivity(this)
+        }
+    }
+
+
+
 }

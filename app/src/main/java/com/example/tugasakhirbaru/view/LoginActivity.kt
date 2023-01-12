@@ -21,9 +21,11 @@ class LoginActivity : AppCompatActivity(), ViewModelListener {
     private val database: DatabaseReference by lazy {
         FirebaseDatabase.getInstance().getReference("users")
     }
+
     private val auth: FirebaseAuth by lazy {
         FirebaseAuth.getInstance()
     }
+
     private val viewModel: LoginViewModel by lazy {
         LoginViewModel(auth, database, this)
     }

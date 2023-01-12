@@ -47,7 +47,7 @@
                     android:text="@{item.menu}"
                     tools:text="@string/DummyNamaMakanan"
                     android:textColor="@color/black"
-                    android:textSize="12sp"></TextView>
+                    android:textSize="12sp"/>
 
                 <TextView
                     android:id="@+id/tvHargaMakanan"
@@ -61,7 +61,7 @@
                     android:text="@{item.price}"
                     tools:text="@string/HargaMakanan"
                     android:textColor="@color/yellow"
-                    android:textSize="20sp"></TextView>
+                    android:textSize="20sp"/>
             </LinearLayout>
         </LinearLayout>
 
