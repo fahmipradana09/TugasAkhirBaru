@@ -9,7 +9,9 @@ import com.example.tugasakhirbaru.R
 import com.example.tugasakhirbaru.adapter.MenuAdapter
 import com.example.tugasakhirbaru.databinding.ActivityHomeBinding
 import com.example.tugasakhirbaru.model.Menu
+import com.example.tugasakhirbaru.util.KotlinExt.openLoginActivity
 import com.example.tugasakhirbaru.util.KotlinExt.openProfileActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 class HomeActivity : AppCompatActivity() {
@@ -18,9 +20,16 @@ class HomeActivity : AppCompatActivity() {
         FirebaseDatabase.getInstance().getReference("menus")
     }
 
+    private val auth: FirebaseAuth by lazy {
+        FirebaseAuth.getInstance()
+    }
+
     private val adapter: MenuAdapter by lazy {
         MenuAdapter(this)
     }
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityHomeBinding.inflate(layoutInflater)
@@ -30,13 +39,13 @@ class HomeActivity : AppCompatActivity() {
         binding.menuList.adapter = adapter
         binding.menuList.layoutManager = GridLayoutManager(this@HomeActivity, 2)
 
-        getUserData()
+        getMenuData()
         showMore()
 
 
     }
 
-    private fun getUserData() {
+    private fun getMenuData() {
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
@@ -62,14 +71,15 @@ class HomeActivity : AppCompatActivity() {
         val popupMenu = PopupMenu(this, binding.toolbar.menuButton)
         popupMenu.menuInflater.inflate(R.menu.option_menu, popupMenu.menu)
         popupMenu.setOnMenuItemClickListener { item ->
-            Log.d("tesbaru2", "kepencet$popupMenu")
             when (item.itemId) {
                 R.id.profile -> {
                     openProfileActivity()
                     true
                 }
                 R.id.logout ->{
-                    Log.d("tesbaru", "Logout")
+                    auth.signOut()
+                    finish()
+                    openLoginActivity()
                     true
                 }
                 else -> false

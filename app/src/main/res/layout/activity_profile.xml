@@ -13,24 +13,15 @@
     android:layout_height="match_parent"
     tools:context=".view.ProfileActivity">
 
-    <include
-        layout="@layout/layout_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="54dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:menuVisible="@{true}"/>
 
     <ImageView
         android:id="@+id/ivProfileAccount"
         android:layout_width="130dp"
         android:layout_height="130dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/ic_baseline_account_circle_24" />
 
     <LinearLayout

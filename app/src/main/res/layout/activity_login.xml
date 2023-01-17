@@ -111,7 +111,7 @@
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="@string/login"
+        android:text="@string/login"
         android:textColor="@color/black"
         android:layout_marginBottom="30dp"
         android:onClick="@{() -> viewModel.login()}"

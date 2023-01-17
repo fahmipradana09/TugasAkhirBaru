@@ -38,7 +38,7 @@ class LoginViewModel(
                         override fun onDataChange(snapshot: DataSnapshot) {
                             val user = snapshot.getValue(Users::class.java)
                             // NOTE: Simpan user ke SharedPreference nanti.
-                            listener.showMessage("Login telah berhasil dilakukan.")
+                            listener.showMessage("Login $userId telah berhasil dilakukan.")
                             listener.navigateTo(Constants.HOME_PAGE)
                         }
 

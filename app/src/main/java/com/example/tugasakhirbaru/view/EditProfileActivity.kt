@@ -1,6 +1,7 @@
 package com.example.tugasakhirbaru.view
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tugasakhirbaru.databinding.ActivityEditProfileBinding
@@ -49,14 +50,21 @@ class EditProfileActivity : AppCompatActivity(), ViewModelListener {
     }
 
     fun showProfile() {
-        database.addValueEventListener(object : ValueEventListener {
+        val currectUser = FirebaseAuth.getInstance().currentUser
+        val userId = currectUser?.uid
+        val userRef = database.child(userId!!)
+        userRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     for (userSnapshot in snapshot.children) {
-                        val user = userSnapshot.getValue(Users::class.java)
-                        if (user != null) {
-                            binding.item = user
-                        }
+                        val email = snapshot.child("email").value.toString()
+                        val username = snapshot.child("username").value.toString()
+                        val password = snapshot.child("password").value.toString()
+                        val alamat = snapshot.child("alamat").value.toString()
+                        val phone = snapshot.child("phone").value.toString()
+                        val user = Users(email= email, username = username, password = password, alamat = alamat, phone = phone)
+                        Log.d("tes", "user : $user")
+                        binding.item = user
                     }
                 }
             }
