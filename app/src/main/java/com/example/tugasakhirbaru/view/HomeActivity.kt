@@ -28,9 +28,6 @@ class HomeActivity : AppCompatActivity() {
         MenuAdapter(this)
     }
 
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)

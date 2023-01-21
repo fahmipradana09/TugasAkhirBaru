@@ -30,13 +30,16 @@
             android:name=".view.HomeActivity"
             android:exported="false"/>
         <activity
-            android:name=".view.DetailActivity"
+            android:name=".view.DetailMenuActivity"
             android:exported="false"/>
         <activity
             android:name=".view.ProfileActivity"
             android:exported="false"/>
         <activity
             android:name=".view.EditProfileActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".view.EditMenuActivity"
             android:exported="false"/>
        
     </application>

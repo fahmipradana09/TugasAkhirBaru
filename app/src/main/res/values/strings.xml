@@ -49,6 +49,7 @@
     <string name="menuBar">menuBar</string>
     <string name="logout">Logout</string>
     <string name="profile">Profile</string>
+    <string name="Kkal">1400 Kkal</string>
 
     <string-array name="filter_makanan">
         <item>A-Z</item>
