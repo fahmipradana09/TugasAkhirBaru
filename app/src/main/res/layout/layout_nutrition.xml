@@ -5,7 +5,7 @@
     <data>
         <variable
             name="item"
-            type="com.example.tugasakhirbaru.model.Component" />
+            type="com.example.tugasakhirbaru.model.ComponentChecklist" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -46,7 +46,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:singleLine="true"
-                        android:text="@{item.stringKkal}"
+                        android:text="@{item.kkalInString}"
                         android:textColor="@color/black"
                         android:textSize="12sp"
                         tools:text="@string/Kkal" />

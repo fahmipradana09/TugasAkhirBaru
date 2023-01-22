@@ -9,11 +9,9 @@ import com.example.tugasakhirbaru.adapter.ComponentAdapter
 import com.example.tugasakhirbaru.databinding.ActivityEditIngredientBinding
 import com.example.tugasakhirbaru.model.ComponentChecklist
 import com.example.tugasakhirbaru.model.Menu
-import com.example.tugasakhirbaru.util.ViewModelListener
 import com.example.tugasakhirbaru.util.constants.IntentNameExtra.MENU_EXTRA
-import com.example.tugasakhirbaru.viewmodel.DetailMenuViewModel
 
-class EditMenuActivity : AppCompatActivity(),ViewModelListener, ComponentAdapter.Listener {
+class EditMenuActivity : AppCompatActivity(), ComponentAdapter.Listener {
     lateinit var binding: ActivityEditIngredientBinding
 
     private val item by lazy {
@@ -23,10 +21,6 @@ class EditMenuActivity : AppCompatActivity(),ViewModelListener, ComponentAdapter
     private val adapter: ComponentAdapter by lazy {
         ComponentAdapter(this, this)
     }
-
-    /*private val viewModel: DetailMenuViewModel by lazy {
-        DetailMenuViewModel(database, this)
-    }*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,14 +53,6 @@ class EditMenuActivity : AppCompatActivity(),ViewModelListener, ComponentAdapter
                 binding.item = item
             }
         }
-    }
-
-    override fun showMessage(message: String?, isLong: Boolean) {
-        TODO("Not yet implemented")
-    }
-
-    override fun navigateTo(param: String) {
-        TODO("Not yet implemented")
     }
 
     override fun updateList(list: List<ComponentChecklist>) {

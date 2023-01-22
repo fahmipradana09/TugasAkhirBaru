@@ -15,7 +15,9 @@ data class Menu(
     val hashMap: HashMap<String, Boolean> = hashMapOf(),
     val detailIngredient: ArrayList<ComponentChecklist> = arrayListOf(),
 ) : Parcelable {
-    fun priceInRupiah() = "Rp. $price"
+    fun priceToString() = price
+
+    fun priceInRupiah() = "Rp ${priceToString()}"
 
     fun imageExists() = picture.isNotBlank()
 

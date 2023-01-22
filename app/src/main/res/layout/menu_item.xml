@@ -4,6 +4,9 @@
         <variable
             name="item"
             type="com.example.tugasakhirbaru.model.Menu" />
+        <variable
+            name="viewModel"
+            type="com.example.tugasakhirbaru.viewmodel.HomeViewModel" />
     </data>
 
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -58,7 +61,7 @@
                     android:layout_marginBottom="4dp"
                     android:shadowColor="@color/black"
                     android:shadowRadius="2"
-                    android:text="@{item.price}"
+                    android:text="@{item.priceInRupiah()}"
                     tools:text="@string/HargaMakanan"
                     android:textColor="@color/yellow"
                     android:textSize="20sp"/>

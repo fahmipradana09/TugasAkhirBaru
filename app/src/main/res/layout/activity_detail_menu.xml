@@ -105,6 +105,7 @@
                                     android:background="@drawable/roundedsquare_for_buttonadd"
                                     android:backgroundTint="@color/white"
                                     android:src="@drawable/remove_icon"
+                                    android:onClick="@{() -> viewModel.minus()}"
                                     android:textColor="@color/black" />
 
                                 <TextView
@@ -112,7 +113,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginEnd="10dp"
-                                    android:text="@string/numberCount"
+                                    android:text="@{viewModel.item.quantityInString}"
+                                    tools:text="@string/numberCount"
                                     android:textSize="25sp" />
 
                                 <ImageButton
@@ -122,6 +124,7 @@
                                     android:layout_gravity="center"
                                     android:background="@drawable/roundedsquare_for_buttonadd"
                                     android:src="@drawable/add_icon"
+                                    android:onClick="@{() -> viewModel.plus()}"
                                     android:textColor="@color/black" />
                             </LinearLayout>
                         </LinearLayout>
@@ -210,6 +213,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
+                                tools:itemCount="2"
                                 tools:listitem="@layout/layout_nutrition"/>
                         </LinearLayout>
                     </LinearLayout>

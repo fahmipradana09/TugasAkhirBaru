@@ -13,6 +13,8 @@ data class ComponentChecklist(
     ) : Parcelable {
     fun getText() = "$menu ($Kkal Kkal)"
 
+    fun getKkalInString() = "$Kkal kkal"
+
     constructor(data: Component, isChecked: Boolean) : this(
         data.menu,
         data.Kkal,

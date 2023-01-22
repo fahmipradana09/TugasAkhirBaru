@@ -4,8 +4,12 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.tugasakhirbaru.adapter.ComponentAdapter
+import com.example.tugasakhirbaru.adapter.NutritionAdapter
 import com.example.tugasakhirbaru.databinding.ActivityDetailMenuBinding
+import com.example.tugasakhirbaru.model.ComponentChecklist
 import com.example.tugasakhirbaru.model.Menu
 import com.example.tugasakhirbaru.util.KotlinExt.openEditIngredient
 import com.example.tugasakhirbaru.util.ViewModelListener
@@ -29,22 +33,32 @@ class DetailMenuActivity : AppCompatActivity(), ViewModelListener {
         DetailMenuViewModel(database, this)
     }
 
+    private val adapter: NutritionAdapter by lazy {
+        NutritionAdapter(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityDetailMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.viewModel = viewModel
 
-        Log.d("DetailActivity", "Item data: $item")
+        binding.ingredientList.layoutManager = LinearLayoutManager(this)
+        binding.ingredientList.adapter = adapter
 
         item?.let { data ->
             viewModel.item = data
             if (data.imageExists()) {
                 Glide.with(this).load(data.picture).into(binding.ivDetailMakanan)
             }
-        }
 
-        viewModel.getIngredient()
+            viewModel.data.observe(this) { menu ->
+                adapter.setData(menu.detailIngredient)
+            }
+
+            viewModel.getIngredient()
+        }
     }
 
     override fun showMessage(message: String?, isLong: Boolean) {

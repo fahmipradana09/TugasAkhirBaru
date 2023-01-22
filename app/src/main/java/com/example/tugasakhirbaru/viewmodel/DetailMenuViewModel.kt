@@ -1,7 +1,8 @@
 package com.example.tugasakhirbaru.viewmodel
 
-import android.util.Log
 import androidx.databinding.Bindable
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.tugasakhirbaru.BR
 import com.example.tugasakhirbaru.model.Component
 import com.example.tugasakhirbaru.model.ComponentChecklist
@@ -20,6 +21,9 @@ class DetailMenuViewModel(
         const val OPEN_EDIT = "open_edit"
     }
 
+    private val mutableData: MutableLiveData<Menu> = MutableLiveData()
+    val data: LiveData<Menu> = mutableData
+
     @Bindable
     var item = Menu()
         set(value) {
@@ -27,16 +31,21 @@ class DetailMenuViewModel(
             notifyPropertyChanged(BR.item)
         }
 
-    @Bindable
-    var isLoading = false
-
     fun openEdit() {
         listener.navigateTo(OPEN_EDIT)
     }
 
-    fun getIngredient() {
-        // isLoading = true
+    fun plus() {
+        item.plus()
+        notifyPropertyChanged(BR.item)
+    }
 
+    fun minus() {
+        item.minus()
+        notifyPropertyChanged(BR.item)
+    }
+
+    fun getIngredient() {
         database.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val componentList = arrayListOf<Component>()
@@ -48,21 +57,15 @@ class DetailMenuViewModel(
                                 ComponentChecklist(component, item.hashMap.getValue(component.id))
                             )
                         }
-                        /*if (item.ingredient.contains(component.id)) {
-                            item.detailIngredient.add(component)
-                        }*/
                     }
                 }
                 notifyPropertyChanged(BR.item)
-                Log.d("DetailActivity", "Item data: $item")
-
-                // Log.d("DetailViewModel", "Component list: $componentList")
+                mutableData.postValue(item)
             }
 
             override fun onCancelled(error: DatabaseError) {
                 listener.showMessage(error.message)
             }
         })
-
     }
 }

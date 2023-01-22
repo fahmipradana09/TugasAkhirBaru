@@ -107,7 +107,7 @@
                             android:layout_height="wrap_content"
                             android:shadowColor="@color/black"
                             android:shadowRadius="2"
-                            android:text="@{item.price}"
+                            android:text="@{item.priceInRupiah()}"
                             android:textColor="@color/yellow"
                             android:textSize="30sp"
                             app:layout_constraintStart_toStartOf="parent"
