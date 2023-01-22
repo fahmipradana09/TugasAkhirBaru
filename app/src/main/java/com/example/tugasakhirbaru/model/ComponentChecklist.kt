@@ -10,15 +10,12 @@ data class ComponentChecklist(
     var id: String = "",
     var isChecked: Boolean = false,
     var isMandatory: Boolean = true,
-    ) : Parcelable {
+) : Parcelable {
     fun getText() = "$menu ($Kkal Kkal)"
 
     fun getKkalInString() = "$Kkal kkal"
 
-    constructor(data: Component, isChecked: Boolean) : this(
-        data.menu,
-        data.Kkal,
-        data.id,
-        isChecked
+    constructor(data: Component, isChecked: Boolean, isMandatory: Boolean) : this(
+        data.menu, data.Kkal, data.id, isChecked, isMandatory
     )
 }

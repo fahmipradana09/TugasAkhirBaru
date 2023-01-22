@@ -14,7 +14,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 
-class DetailMenuViewModel(
+class EditMenuViewModel(
     val database: DatabaseReference, val listener: ViewModelListener
 ) : ObservableViewModel() {
     companion object {
@@ -30,10 +30,6 @@ class DetailMenuViewModel(
             field = value
             notifyPropertyChanged(BR.item)
         }
-
-    fun openEdit() {
-        listener.navigateTo(OPEN_EDIT)
-    }
 
     fun plus() {
         item.plus()

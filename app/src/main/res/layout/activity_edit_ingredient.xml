@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
-            name="item"
-            type="com.example.tugasakhirbaru.model.Menu" />
+            name="viewModel"
+            type="com.example.tugasakhirbaru.viewmodel.EditMenuViewModel" />
+        
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -84,7 +84,7 @@
                         android:layout_marginStart="30dp"
                         android:layout_marginTop="10dp"
                         android:maxLines="2"
-                        android:text="@{item.menu}"
+                        android:text="@{viewModel.item.menu}"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -107,7 +107,7 @@
                             android:layout_height="wrap_content"
                             android:shadowColor="@color/black"
                             android:shadowRadius="2"
-                            android:text="@{item.priceInRupiah()}"
+                            android:text="@{viewModel.item.priceInRupiah()}"
                             android:textColor="@color/yellow"
                             android:textSize="30sp"
                             app:layout_constraintStart_toStartOf="parent"
@@ -126,6 +126,7 @@
                                 android:layout_width="45dp"
                                 android:layout_height="35dp"
                                 android:layout_marginEnd="10dp"
+                                android:onClick="@{() -> viewModel.minus()}"
                                 android:background="@drawable/roundedsquare_for_buttonadd"
                                 android:backgroundTint="@color/white"
                                 android:src="@drawable/remove_icon"
@@ -136,7 +137,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="10dp"
-                                android:text="@{item.quantityInString()}"
+                                android:text="@{viewModel.item.quantityInString()}"
                                 android:textSize="25sp"
                                 tools:text="1" />
 
@@ -147,6 +148,7 @@
                                 android:layout_gravity="center"
                                 android:background="@drawable/roundedsquare_for_buttonadd"
                                 android:src="@drawable/add_icon"
+                                android:onClick="@{() -> viewModel.plus()}"
                                 android:textColor="@color/black" />
                         </LinearLayout>
 
@@ -159,7 +161,7 @@
                         android:layout_marginStart="30dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="30dp"
-                        android:text="@{item.description}"
+                        android:text="@{viewModel.item.description}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
@@ -221,7 +223,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="@{item.totalCalories()}"
+                            android:text="@{viewModel.item.totalCalories()}"
                             android:textColor="@color/black"
                             android:textSize="20sp"
                             tools:text="500 Kkal" />

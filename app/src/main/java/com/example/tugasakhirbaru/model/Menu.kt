@@ -9,10 +9,10 @@ data class Menu(
     var menu: String = "",
     var picture: String = "",
     var price: String = "",
-//    val ingredient: List<String> = arrayListOf(),
-//    val default: List<Boolean> = arrayListOf(),
+    val ingredient: List<String> = arrayListOf(),
+    val default: List<Boolean> = arrayListOf(),
+    val mandatory: List<Boolean> = arrayListOf(),
     var quantity: Int = 1,
-    val hashMap: HashMap<String, Boolean> = hashMapOf(),
     val detailIngredient: ArrayList<ComponentChecklist> = arrayListOf(),
 ) : Parcelable {
     fun priceToString() = price
