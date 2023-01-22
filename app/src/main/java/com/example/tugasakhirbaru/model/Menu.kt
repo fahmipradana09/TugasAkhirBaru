@@ -8,16 +8,16 @@ data class Menu(
     var description: String = "",
     var menu: String = "",
     var picture: String = "",
-    var price: String = "",
+    var price: Long = 0,
     val ingredient: List<String> = arrayListOf(),
     val default: List<Boolean> = arrayListOf(),
     val mandatory: List<Boolean> = arrayListOf(),
     var quantity: Int = 1,
     val detailIngredient: ArrayList<ComponentChecklist> = arrayListOf(),
 ) : Parcelable {
-    fun priceToString() = price
+    fun priceTotal() = price + (quantity-1)* price
 
-    fun priceInRupiah() = "Rp ${priceToString()}"
+    fun priceInRupiah() = "Rp ${priceTotal()}"
 
     fun imageExists() = picture.isNotBlank()
 
@@ -27,7 +27,10 @@ data class Menu(
 
     fun plus() = quantity++
 
-    fun minus() = quantity--
+    fun minus() {
+        if (quantity > 1)
+        quantity--
+    }
 
     fun quantityInString() = quantity.toString()
 

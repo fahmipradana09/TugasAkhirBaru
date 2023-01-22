@@ -18,7 +18,7 @@ class EditMenuViewModel(
     val database: DatabaseReference, val listener: ViewModelListener
 ) : ObservableViewModel() {
     companion object {
-        const val OPEN_EDIT = "open_edit"
+        const val OPEN_CHECKOUT = "open_checkout"
     }
 
     private val mutableData: MutableLiveData<Menu> = MutableLiveData()
@@ -30,6 +30,10 @@ class EditMenuViewModel(
             field = value
             notifyPropertyChanged(BR.item)
         }
+
+    fun openCheckout(){
+        listener.navigateTo(DetailMenuViewModel.OPEN_CHECKOUT)
+    }
 
     fun plus() {
         item.plus()

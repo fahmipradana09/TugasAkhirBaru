@@ -41,6 +41,9 @@
         <activity
             android:name=".view.EditMenuActivity"
             android:exported="false"/>
+        <activity
+            android:name=".view.CheckoutActivity"
+            android:exported="false"/>
        
     </application>
 

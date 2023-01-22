@@ -10,8 +10,10 @@ import com.example.tugasakhirbaru.adapter.ComponentAdapter
 import com.example.tugasakhirbaru.databinding.ActivityEditIngredientBinding
 import com.example.tugasakhirbaru.model.ComponentChecklist
 import com.example.tugasakhirbaru.model.Menu
+import com.example.tugasakhirbaru.util.KotlinExt.openCheckoutActivity
 import com.example.tugasakhirbaru.util.ViewModelListener
 import com.example.tugasakhirbaru.util.constants.IntentNameExtra.MENU_EXTRA
+import com.example.tugasakhirbaru.viewmodel.DetailMenuViewModel
 import com.example.tugasakhirbaru.viewmodel.EditMenuViewModel
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -65,6 +67,8 @@ class EditMenuActivity : AppCompatActivity(), ComponentAdapter.Listener, ViewMod
     }
 
     override fun navigateTo(param: String) {
-        TODO("Not yet implemented")
+        if (param == EditMenuViewModel.OPEN_CHECKOUT){
+            openCheckoutActivity(viewModel.item)
+        }
     }
 }

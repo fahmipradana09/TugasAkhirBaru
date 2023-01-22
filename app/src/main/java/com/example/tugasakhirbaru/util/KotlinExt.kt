@@ -55,4 +55,11 @@ object KotlinExt {
             startActivity(this)
         }
     }
+
+    fun Context.openCheckoutActivity(itemExtra: Menu) {
+        Intent(this, CheckoutActivity::class.java).run {
+            putExtra(MENU_EXTRA,itemExtra)
+            startActivity(this)
+        }
+    }
 }

@@ -11,6 +11,7 @@ import com.example.tugasakhirbaru.adapter.NutritionAdapter
 import com.example.tugasakhirbaru.databinding.ActivityDetailMenuBinding
 import com.example.tugasakhirbaru.model.ComponentChecklist
 import com.example.tugasakhirbaru.model.Menu
+import com.example.tugasakhirbaru.util.KotlinExt.openCheckoutActivity
 import com.example.tugasakhirbaru.util.KotlinExt.openEditIngredient
 import com.example.tugasakhirbaru.util.ViewModelListener
 import com.example.tugasakhirbaru.util.constants.IntentNameExtra.MENU_EXTRA
@@ -68,6 +69,10 @@ class DetailMenuActivity : AppCompatActivity(), ViewModelListener {
     override fun navigateTo(param: String) {
         if (param == DetailMenuViewModel.OPEN_EDIT) {
             openEditIngredient(viewModel.item)
+        }
+
+        if (param == DetailMenuViewModel.OPEN_CHECKOUT){
+            openCheckoutActivity(viewModel.item)
         }
     }
 }

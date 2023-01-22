@@ -50,6 +50,8 @@
     <string name="logout">Logout</string>
     <string name="profile">Profile</string>
     <string name="Kkal">1400 Kkal</string>
+    <string name="hapus">Hapus</string>
+    <string name="DummyHarga">Rp 1.230.000</string>
 
     <string-array name="filter_makanan">
         <item>A-Z</item>

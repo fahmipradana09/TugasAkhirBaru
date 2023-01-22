@@ -19,6 +19,7 @@ class DetailMenuViewModel(
 ) : ObservableViewModel() {
     companion object {
         const val OPEN_EDIT = "open_edit"
+        const val OPEN_CHECKOUT = "open_checkout"
     }
 
     private val mutableData: MutableLiveData<Menu> = MutableLiveData()
@@ -33,6 +34,9 @@ class DetailMenuViewModel(
 
     fun openEdit() {
         listener.navigateTo(OPEN_EDIT)
+    }
+    fun openCheckout() {
+        listener.navigateTo(OPEN_CHECKOUT)
     }
 
     fun plus() {

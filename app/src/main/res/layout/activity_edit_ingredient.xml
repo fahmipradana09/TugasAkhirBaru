@@ -244,6 +244,7 @@
             android:background="@drawable/lessroundedsquare"
             android:text="@string/TambahKeKeranjang"
             android:textColor="@color/black"
+            android:onClick="@{() ->viewModel.openCheckout()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

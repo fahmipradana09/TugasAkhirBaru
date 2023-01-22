@@ -2,228 +2,169 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.CheckoutActivity">
 
-    <androidx.appcompat.widget.Toolbar
+    <include
         android:id="@+id/toolbar"
-        android:layout_width="411dp"
-        android:layout_height="54dp"
-        android:background="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/ivLogo"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleTextView"
-            app:srcCompat="@drawable/logo_ricebox" />
-    </androidx.appcompat.widget.Toolbar>
-
-    <TextView
-        android:id="@+id/tvCheckout"
-        android:layout_width="wrap_content"
+        layout="@layout/layout_toolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:text="@string/checkout"
-        android:textColor="@color/black"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="30dp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <LinearLayout
-        android:id="@+id/LLMenuKeranjang"
-        android:layout_width="380dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCheckout">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/ivKeranjangMakanan"
-            android:layout_width="90dp"
-            android:layout_height="70dp"
-            app:srcCompat="@drawable/ayamgoreng" />
-
-        <LinearLayout
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tvHargaMakanan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:shadowColor="@color/black"
-                android:shadowRadius="2"
-                android:text="@string/HargaMakanan"
-                android:textColor="@color/yellow"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvJudulMakanan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/DummyNamaMakanan"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/custom"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:layout_width="134dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="2sp"
-                    android:maxLines="6"
-                    android:text="@string/DummyCustom"
-                    android:textSize="12sp" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-
-                android:orientation="horizontal">
-
-                <ImageButton
-                    android:id="@+id/minesCountMenu"
-                    android:layout_width="35dp"
-                    android:layout_height="25dp"
-                    android:layout_marginEnd="10dp"
-                    android:background="@drawable/roundedsquare_for_buttonadd"
-                    android:backgroundTint="@color/white"
-                    android:src="@drawable/remove_icon"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/numberCountDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:text="@string/numberCount"
-                    android:textSize="20sp" />
-
-                <ImageButton
-                    android:id="@+id/addCountMenu"
-                    android:layout_width="35dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/roundedsquare_for_buttonadd"
-                    android:src="@drawable/add_icon"
-                    android:textColor="@color/black" />
-            </LinearLayout>
-
-        </LinearLayout>
-    </LinearLayout>
-    <Button
-        android:id="@+id/btnAddCart"
-        android:layout_width="100dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="10dp"
-        android:textSize="12sp"
-        android:text="@string/tambah"
-        android:padding="2dp"
-        android:autoSizeTextType="uniform"
-        android:textColor="@color/black"
-        android:layout_marginStart="2dp"
-        android:layout_marginEnd="30dp"
-        app:layout_constraintTop_toBottomOf="@id/LLMenuKeranjang"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/roundedsquare_for_buttonadd"/>
-
-    <TextView
-        android:id="@+id/tvAlamat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="30dp"
-        android:text="@string/alamat"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAddCart" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tvDescAlamat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAlamat">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="350dp"
-            android:layout_height="100dp"
-            android:text="@string/AlamatError"
-            android:textSize="14sp"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <LinearLayout
-        android:id="@+id/LLTotalHarga"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_marginTop="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvDescAlamat">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tvTotal"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvCheckout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="@string/checkout"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="30dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="30dp">
+                <TextView
+                    android:id="@+id/tvAlamat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/alamat"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tvDescAlamat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAlamat">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="350dp"
+                        android:layout_height="100dp"
+                        tools:text="@string/AlamatError"
+                        android:textSize="14sp"/>
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LLMenuKeranjang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCheckout">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/listMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:listitem="@layout/checkout_item"
+                    tools:itemCount="2"/>
+            </LinearLayout>
+            <Button
+                android:id="@+id/btnAddCart"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:textSize="12sp"
+                android:text="@string/tambah"
+                android:padding="2dp"
+                android:layout_gravity="end"
+                android:textColor="@color/black"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintTop_toBottomOf="@id/LLMenuKeranjang"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/roundedsquare_for_buttonadd"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginStart="30dp"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="30dp"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:text="@string/Total"
-        app:layout_constraintTop_toBottomOf="@id/LLTotalHarga"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toTopOf="@id/btnBayar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <TextView
+            android:id="@+id/tvTotal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:text="@string/Total" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/DummyHarga"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@color/black"/>
+
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnBayar"
-        android:layout_width="120dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:textColor="@color/black"
-        android:layout_marginBottom="30dp"
         android:text="@string/bayar"
         android:background="@drawable/lessroundedsquare"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
