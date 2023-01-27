@@ -5,45 +5,37 @@ import com.google.firebase.database.Exclude
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Menu(
-    var description: String = "",
+class MenuCart(
     var id: String = "",
     var menu: String = "",
     var picture: String = "",
-    var price: Long = 0,
-    val ingredient: List<String> = arrayListOf(),
-    val default: List<Boolean> = arrayListOf(),
-    val mandatory: List<Boolean> = arrayListOf(),
     var quantity: Int = 1,
-    val detailIngredient: ArrayList<ComponentChecklist> = arrayListOf(),
+    var price: Long = 0,
+    val ingredients: ArrayList<ComponentChecklist> = arrayListOf(),
 ) : Parcelable {
     @Exclude
     fun priceInRupiah() = "Rp ${totalPrice()}"
 
     @Exclude
-    fun imageExists() = picture.isNotBlank()
+    fun plus() = quantity++
 
     @Exclude
-    fun ingredientInString() = detailIngredient.joinToString(separator = ", ", transform = {
-        it.menu
-    })
-
-    @Exclude
-    fun plus() = if (quantity > 100) null else quantity++
-
-    @Exclude
-    fun minus() = if (quantity < 1) null else quantity--
+    fun minus() {
+        if (quantity > 1) {
+            quantity--
+        }
+    }
 
     @Exclude
     fun quantityInString() = quantity.toString()
 
     @Exclude
-    fun totalPrice() = price * quantity
+    fun imageExists() = picture.isNotBlank()
 
     @Exclude
     fun totalCalories(): Double {
         var total = 0.0
-        for (component in detailIngredient) {
+        for (component in ingredients) {
             if (component.isChecked) {
                 total += component.Kkal
             }
@@ -54,4 +46,12 @@ data class Menu(
 
     @Exclude
     fun totalCaloriesInString(): String = "${totalCalories()} Kkal"
+
+    @Exclude
+    fun totalPrice() = price * quantity
+
+    @Exclude
+    fun ingredientInString() = ingredients.joinToString(separator = ", ", transform = {
+        it.menu
+    })
 }

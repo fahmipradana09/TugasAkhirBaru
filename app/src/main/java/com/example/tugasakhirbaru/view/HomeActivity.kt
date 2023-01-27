@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.tugasakhirbaru.R
 import com.example.tugasakhirbaru.adapter.MenuAdapter
 import com.example.tugasakhirbaru.databinding.ActivityHomeBinding
+import com.example.tugasakhirbaru.util.KotlinExt.openCheckoutActivity
 import com.example.tugasakhirbaru.util.KotlinExt.openLoginActivity
 import com.example.tugasakhirbaru.util.KotlinExt.openProfileActivity
 import com.example.tugasakhirbaru.util.ViewModelListener
@@ -55,6 +56,10 @@ class HomeActivity : AppCompatActivity(), ViewModelListener {
         popupMenu.menuInflater.inflate(R.menu.option_menu, popupMenu.menu)
         popupMenu.setOnMenuItemClickListener { item ->
             when (item.itemId) {
+                R.id.checkout -> {
+                    openCheckoutActivity()
+                    true
+                }
                 R.id.profile -> {
                     openProfileActivity()
                     true

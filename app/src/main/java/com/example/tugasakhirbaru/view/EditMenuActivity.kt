@@ -12,10 +12,10 @@ import com.example.tugasakhirbaru.model.ComponentChecklist
 import com.example.tugasakhirbaru.model.Menu
 import com.example.tugasakhirbaru.util.KotlinExt.openCheckoutActivity
 import com.example.tugasakhirbaru.util.ViewModelListener
+import com.example.tugasakhirbaru.util.constants.DatabasePath
 import com.example.tugasakhirbaru.util.constants.IntentNameExtra.MENU_EXTRA
-import com.example.tugasakhirbaru.viewmodel.DetailMenuViewModel
 import com.example.tugasakhirbaru.viewmodel.EditMenuViewModel
-import com.google.firebase.database.DatabaseReference
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 class EditMenuActivity : AppCompatActivity(), ComponentAdapter.Listener, ViewModelListener {
@@ -29,12 +29,13 @@ class EditMenuActivity : AppCompatActivity(), ComponentAdapter.Listener, ViewMod
         ComponentAdapter(this, this)
     }
 
-    private val database: DatabaseReference by lazy {
-        FirebaseDatabase.getInstance().getReference("component")
-    }
-
     private val viewModel: EditMenuViewModel by lazy {
-        EditMenuViewModel(database, this)
+        EditMenuViewModel(
+            FirebaseAuth.getInstance(),
+            FirebaseDatabase.getInstance().getReference(DatabasePath.COMPONENT),
+            FirebaseDatabase.getInstance().getReference(DatabasePath.USER_CART),
+            this
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,8 +68,8 @@ class EditMenuActivity : AppCompatActivity(), ComponentAdapter.Listener, ViewMod
     }
 
     override fun navigateTo(param: String) {
-        if (param == EditMenuViewModel.OPEN_CHECKOUT){
-            openCheckoutActivity(viewModel.item)
+        if (param == EditMenuViewModel.OPEN_CHECKOUT) {
+            openCheckoutActivity()
         }
     }
 }

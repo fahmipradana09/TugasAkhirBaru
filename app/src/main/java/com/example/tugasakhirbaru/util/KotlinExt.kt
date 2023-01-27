@@ -3,7 +3,6 @@ package com.example.tugasakhirbaru.util
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import com.example.tugasakhirbaru.model.ComponentChecklist
 import com.example.tugasakhirbaru.model.Menu
 import com.example.tugasakhirbaru.util.constants.IntentNameExtra.MENU_EXTRA
 import com.example.tugasakhirbaru.view.*
@@ -51,14 +50,13 @@ object KotlinExt {
 
     fun Context.openEditIngredient(itemExtra: Menu) {
         Intent(this, EditMenuActivity::class.java).run {
-            putExtra(MENU_EXTRA,itemExtra)
+            putExtra(MENU_EXTRA, itemExtra)
             startActivity(this)
         }
     }
 
-    fun Context.openCheckoutActivity(itemExtra: Menu) {
+    fun Context.openCheckoutActivity() {
         Intent(this, CheckoutActivity::class.java).run {
-            putExtra(MENU_EXTRA,itemExtra)
             startActivity(this)
         }
     }

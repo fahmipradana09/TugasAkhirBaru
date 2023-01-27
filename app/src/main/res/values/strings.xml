@@ -17,8 +17,7 @@
     <string name="TambahKeKeranjang">Tambah ke Keranjang</string>
     <string name="numberCount">0</string>
     <string name="Keranjang">Keranjang</string>
-    <string name="DummyCustom">Daging, Telur, Selada</string>
-    <string name="custom">Custom :</string>
+    <string name="custom">Custom : Daging, Telur, Selada</string>
     <string name="beli">Beli</string>
     <string name="checkout">Checkout</string>
     <string name="tambah">Tambah</string>

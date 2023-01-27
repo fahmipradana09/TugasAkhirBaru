@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-
+<layout xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="item"
+            type="com.example.tugasakhirbaru.model.MenuCart" />
+    </data>
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="wrap_content"
@@ -35,7 +39,8 @@
                     android:layout_height="wrap_content"
                     android:shadowColor="@color/black"
                     android:shadowRadius="2"
-                    android:text="@string/HargaMakanan"
+                    android:text="@{item.priceInRupiah()}"
+                    tools:text="@string/HargaMakanan"
                     android:textColor="@color/yellow"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -44,7 +49,8 @@
                     android:id="@+id/tvJudulMakanan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/DummyNamaMakanan"
+                    android:text="@{item.menu}"
+                    tools:text="@string/DummyNamaMakanan"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
@@ -57,16 +63,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/custom"
+                        android:text="@{item.ingredientInString()}"
+                        tools:text="@string/custom"
                         android:textSize="12sp" />
 
-                    <TextView
-                        android:layout_width="134dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="2sp"
-                        android:maxLines="6"
-                        android:text="@string/DummyCustom"
-                        android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -97,7 +97,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
-                        android:text="@string/numberCount"
+                        android:text="@{item.quantityInString()}"
+                        tools:text="@string/numberCount"
                         android:textSize="20sp" />
 
                     <ImageButton
@@ -111,6 +112,7 @@
                 </LinearLayout>
 
                 <Button
+                    android:id="@+id/deleteButton"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginStart="2dp"

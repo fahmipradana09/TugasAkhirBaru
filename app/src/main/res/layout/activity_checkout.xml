@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.tugasakhirbaru.viewmodel.CheckoutViewModel" />
+    </data>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".view.CheckoutActivity">
+
 
     <include
         android:id="@+id/toolbar"
@@ -69,6 +76,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="350dp"
                         android:layout_height="100dp"
+                        android:text="@={viewModel.cart.address}"
                         tools:text="@string/AlamatError"
                         android:textSize="14sp"/>
                 </com.google.android.material.textfield.TextInputLayout>
@@ -96,7 +104,7 @@
             </LinearLayout>
             <Button
                 android:id="@+id/btnAddCart"
-                android:layout_width="100dp"
+                android:layout_width="120dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="10dp"
                 android:textSize="12sp"
@@ -108,7 +116,7 @@
                 android:layout_marginEnd="20dp"
                 app:layout_constraintTop_toBottomOf="@id/LLMenuKeranjang"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/roundedsquare_for_buttonadd"/>
+                android:background="@drawable/roundedsquare_for_buttonadd"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -145,7 +153,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="@string/DummyHarga"
+            android:text="@{viewModel.cart.totalPrice()}"
             android:textStyle="bold"
             android:gravity="center"
             android:textSize="20sp"
@@ -161,10 +169,12 @@
         android:layout_gravity="center"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="16dp"
+        android:background="@drawable/lessroundedsquare"
+        android:onClick="@{() -> viewModel.updateCart()}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:textColor="@color/black"
-        android:text="@string/bayar"
-        android:background="@drawable/lessroundedsquare"/>
+        android:text="@string/bayar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,49 +1,46 @@
 package com.example.tugasakhirbaru.view
 
 import android.os.Bundle
-import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
-import com.example.tugasakhirbaru.R
-import com.example.tugasakhirbaru.adapter.MenuAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tugasakhirbaru.adapter.MenuCartAdapter
 import com.example.tugasakhirbaru.databinding.ActivityCheckoutBinding
-import com.example.tugasakhirbaru.databinding.ActivityHomeBinding
-import com.example.tugasakhirbaru.util.KotlinExt.openLoginActivity
-import com.example.tugasakhirbaru.util.KotlinExt.openProfileActivity
+import com.example.tugasakhirbaru.model.MenuCart
 import com.example.tugasakhirbaru.util.ViewModelListener
-import com.example.tugasakhirbaru.viewmodel.HomeViewModel
+import com.example.tugasakhirbaru.util.constants.DatabasePath
+import com.example.tugasakhirbaru.viewmodel.CheckoutViewModel
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
-class CheckoutActivity : AppCompatActivity(), ViewModelListener {
+class CheckoutActivity : AppCompatActivity(), ViewModelListener, MenuCartAdapter.Listener {
     lateinit var binding: ActivityCheckoutBinding
-    private val database: DatabaseReference by lazy {
-        FirebaseDatabase.getInstance().getReference("menus")
+
+    private val viewModel: CheckoutViewModel by lazy {
+        CheckoutViewModel(
+            FirebaseAuth.getInstance(),
+            FirebaseDatabase.getInstance().getReference(DatabasePath.USER_CART),
+            this
+        )
     }
 
-    private val auth: FirebaseAuth by lazy {
-        FirebaseAuth.getInstance()
-    }
-
-    private val viewModel: HomeViewModel by lazy {
-        HomeViewModel(database, this)
-    }
-
-    private val adapter: MenuAdapter by lazy {
-        MenuAdapter(this)
+    private val adapter: MenuCartAdapter by lazy {
+        MenuCartAdapter(this, this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding = ActivityCheckoutBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
 
-        viewModel.listData.observe(this) { listData ->
-            adapter.setData(listData)
+        binding = ActivityCheckoutBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.viewModel = viewModel
+        binding.listMenu.layoutManager = LinearLayoutManager(this)
+        binding.listMenu.adapter = adapter
+
+        viewModel.listData.observe(this) { list ->
+            adapter.setData(list)
         }
-        viewModel.getMenuData()
+        viewModel.getUserCart()
     }
 
     override fun showMessage(message: String?, isLong: Boolean) {
@@ -52,5 +49,13 @@ class CheckoutActivity : AppCompatActivity(), ViewModelListener {
 
     override fun navigateTo(param: String) {
         TODO("Not yet implemented")
+    }
+
+    override fun updateItem(item: MenuCart) {
+        viewModel.updateItem(item)
+    }
+
+    override fun removeItem(id: String) {
+        viewModel.removeItem(id)
     }
 }

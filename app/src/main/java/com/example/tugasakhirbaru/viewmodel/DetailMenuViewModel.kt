@@ -9,13 +9,18 @@ import com.example.tugasakhirbaru.model.ComponentChecklist
 import com.example.tugasakhirbaru.model.Menu
 import com.example.tugasakhirbaru.util.ObservableViewModel
 import com.example.tugasakhirbaru.util.ViewModelListener
+import com.example.tugasakhirbaru.util.constants.DatabasePath
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 
 class DetailMenuViewModel(
-    val database: DatabaseReference, val listener: ViewModelListener
+    private val auth: FirebaseAuth,
+    private val menuDatabase: DatabaseReference,
+    private val cartDatabase: DatabaseReference,
+    private val listener: ViewModelListener,
 ) : ObservableViewModel() {
     companion object {
         const val OPEN_EDIT = "open_edit"
@@ -32,11 +37,9 @@ class DetailMenuViewModel(
             notifyPropertyChanged(BR.item)
         }
 
+
     fun openEdit() {
         listener.navigateTo(OPEN_EDIT)
-    }
-    fun openCheckout() {
-        listener.navigateTo(OPEN_CHECKOUT)
     }
 
     fun plus() {
@@ -50,7 +53,7 @@ class DetailMenuViewModel(
     }
 
     fun getIngredient() {
-        database.addListenerForSingleValueEvent(object : ValueEventListener {
+        menuDatabase.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val componentList = arrayListOf<Component>()
                 for (children in snapshot.children) {
@@ -74,5 +77,16 @@ class DetailMenuViewModel(
                 listener.showMessage(error.message)
             }
         })
+    }
+
+    fun updateCart() {
+        val uid = auth.currentUser?.uid ?: return
+
+        cartDatabase.child(uid).child(DatabasePath.ORDER_LIST).child(item.id).setValue(item).addOnSuccessListener {
+            listener.showMessage("Anda telah menambahkan Menu")
+            listener.navigateTo(DetailMenuViewModel.OPEN_CHECKOUT)
+        }.addOnFailureListener {
+            listener.showMessage("Menu gagal ditambahkan")
+        }
     }
 }

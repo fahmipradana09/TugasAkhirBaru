@@ -1,22 +1,20 @@
 package com.example.tugasakhirbaru.view
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.example.tugasakhirbaru.adapter.ComponentAdapter
 import com.example.tugasakhirbaru.adapter.NutritionAdapter
 import com.example.tugasakhirbaru.databinding.ActivityDetailMenuBinding
-import com.example.tugasakhirbaru.model.ComponentChecklist
 import com.example.tugasakhirbaru.model.Menu
 import com.example.tugasakhirbaru.util.KotlinExt.openCheckoutActivity
 import com.example.tugasakhirbaru.util.KotlinExt.openEditIngredient
 import com.example.tugasakhirbaru.util.ViewModelListener
+import com.example.tugasakhirbaru.util.constants.DatabasePath
 import com.example.tugasakhirbaru.util.constants.IntentNameExtra.MENU_EXTRA
 import com.example.tugasakhirbaru.viewmodel.DetailMenuViewModel
-import com.google.firebase.database.DatabaseReference
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 class DetailMenuActivity : AppCompatActivity(), ViewModelListener {
@@ -26,12 +24,13 @@ class DetailMenuActivity : AppCompatActivity(), ViewModelListener {
         intent.getParcelableExtra<Menu?>(MENU_EXTRA)
     }
 
-    private val database: DatabaseReference by lazy {
-        FirebaseDatabase.getInstance().getReference("component")
-    }
-
     private val viewModel: DetailMenuViewModel by lazy {
-        DetailMenuViewModel(database, this)
+        DetailMenuViewModel(
+            FirebaseAuth.getInstance(),
+            FirebaseDatabase.getInstance().getReference(DatabasePath.COMPONENT),
+            FirebaseDatabase.getInstance().getReference(DatabasePath.USER_CART),
+            this
+        )
     }
 
     private val adapter: NutritionAdapter by lazy {
@@ -58,8 +57,8 @@ class DetailMenuActivity : AppCompatActivity(), ViewModelListener {
                 adapter.setData(menu.detailIngredient)
             }
 
-            viewModel.getIngredient()
         }
+        viewModel.getIngredient()
     }
 
     override fun showMessage(message: String?, isLong: Boolean) {
@@ -71,8 +70,8 @@ class DetailMenuActivity : AppCompatActivity(), ViewModelListener {
             openEditIngredient(viewModel.item)
         }
 
-        if (param == DetailMenuViewModel.OPEN_CHECKOUT){
-            openCheckoutActivity(viewModel.item)
+        if (param == DetailMenuViewModel.OPEN_CHECKOUT) {
+            openCheckoutActivity()
         }
     }
 }

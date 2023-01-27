@@ -223,7 +223,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="@{viewModel.item.totalCalories()}"
+                            android:text="@{viewModel.item.totalCaloriesInString()}"
                             android:textColor="@color/black"
                             android:textSize="20sp"
                             tools:text="500 Kkal" />
@@ -244,7 +244,7 @@
             android:background="@drawable/lessroundedsquare"
             android:text="@string/TambahKeKeranjang"
             android:textColor="@color/black"
-            android:onClick="@{() ->viewModel.openCheckout()}"
+            android:onClick="@{() ->viewModel.updateCart()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

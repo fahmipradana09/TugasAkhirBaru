@@ -39,22 +39,6 @@ class ProfileActivity : AppCompatActivity() {
                 if (snapshot.exists()) {
                     val user = snapshot.getValue(Users::class.java)
                     binding.item = user
-                    /*for (userSnapshot in snapshot.children) {
-                        val email = snapshot.child("email").value.toString()
-                        val username = snapshot.child("username").value.toString()
-                        val password = snapshot.child("password").value.toString()
-                        val alamat = snapshot.child("alamat").value.toString()
-                        val phone = snapshot.child("phone").value.toString()
-                        val user = Users(
-                            email = email,
-                            username = username,
-                            password = password,
-                            alamat = alamat,
-                            phone = phone
-                        )
-                        Log.d("tes", "user : $user")
-                        binding.item = user
-                    }*/
                 }
             }
 
