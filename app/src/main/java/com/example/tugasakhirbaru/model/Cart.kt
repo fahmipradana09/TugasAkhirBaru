@@ -7,16 +7,11 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Cart (
-    var userId: String = "",
+    var user : String = "",
     var address: String = "",
-    val orderList: HashMap<String, MenuCart> = hashMapOf()
+    var detailIngredient: ArrayList<ComponentChecklist> = arrayListOf(),
+    val orderList: HashMap<String, Menu> = hashMapOf()
 ) : Parcelable {
-    @Exclude
-    fun toHashMap(): HashMap<String, Any?> = hashMapOf(
-        "userId" to userId,
-        "address" to address
-    )
-
     @Exclude
     fun totalCalories(): String {
         var total = 0.0
@@ -26,13 +21,13 @@ data class Cart (
         return "$total Kkal"
     }
 
-    @Exclude
-    fun totalPrice(): String {
+    fun totalPrice(): Long {
         var total = 0L
         for ((_, item) in orderList) {
-            Log.d("Cart", "Item ${item.id}: ${item.totalPrice()}" )
             total += item.totalPrice()
         }
-        return "Rp $total"
+        return total
     }
+
+    fun totalToString() = "Rp ${totalPrice()}"
 }

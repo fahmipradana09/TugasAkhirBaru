@@ -1,7 +1,10 @@
 package com.example.tugasakhirbaru.viewmodel
 
+import android.util.Log
 import androidx.databinding.Bindable
+import com.example.tugasakhirbaru.BuildConfig
 import com.example.tugasakhirbaru.model.Users
+import com.example.tugasakhirbaru.repository.UserPreference
 import com.example.tugasakhirbaru.util.ObservableViewModel
 import com.example.tugasakhirbaru.util.ViewModelListener
 import com.example.tugasakhirbaru.util.constants.Constants
@@ -12,7 +15,9 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 
 class LoginViewModel(
-    val auth: FirebaseAuth, val database: DatabaseReference, val listener: ViewModelListener
+    val auth: FirebaseAuth, val database: DatabaseReference,
+    private val userPreference: UserPreference, val listener: ViewModelListener
+
 ) : ObservableViewModel() {
     @Bindable
     var user = Users()
@@ -37,9 +42,17 @@ class LoginViewModel(
                  database.child(userId).addListenerForSingleValueEvent(object : ValueEventListener {
                         override fun onDataChange(snapshot: DataSnapshot) {
                             val user = snapshot.getValue(Users::class.java)
-                            // NOTE: Simpan user ke SharedPreference nanti.
-                            listener.showMessage("Login $userId telah berhasil dilakukan.")
-                            listener.navigateTo(Constants.HOME_PAGE)
+                            if (user != null  && user.role == "admin"){
+                                listener.showMessage("Login $userId telah berhasil dilakukan.")
+                                listener.navigateTo(Constants.OPEN_ADMIN)
+                            }
+                            else {
+                                listener.showMessage("Login $userId telah berhasil dilakukan.")
+                                listener.navigateTo(Constants.HOME_PAGE)
+                            }
+                            userPreference.saveUser(user!!)
+                            Log.i("tes","user : $user")
+
                         }
 
                         override fun onCancelled(error: DatabaseError) {

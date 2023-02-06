@@ -1,20 +1,16 @@
 package com.example.tugasakhirbaru.viewmodel
 
+import android.util.Log
 import androidx.databinding.Bindable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.tugasakhirbaru.BR
-import com.example.tugasakhirbaru.model.Component
-import com.example.tugasakhirbaru.model.ComponentChecklist
-import com.example.tugasakhirbaru.model.Menu
+import com.example.tugasakhirbaru.model.*
 import com.example.tugasakhirbaru.util.ObservableViewModel
 import com.example.tugasakhirbaru.util.ViewModelListener
 import com.example.tugasakhirbaru.util.constants.DatabasePath
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 
 class DetailMenuViewModel(
     private val auth: FirebaseAuth,
@@ -27,8 +23,8 @@ class DetailMenuViewModel(
         const val OPEN_CHECKOUT = "open_checkout"
     }
 
-    private val mutableData: MutableLiveData<Menu> = MutableLiveData()
-    val data: LiveData<Menu> = mutableData
+    private val mutableDataMenu: MutableLiveData<Menu> = MutableLiveData()
+    val dataMenu: LiveData<Menu> = mutableDataMenu
 
     @Bindable
     var item = Menu()
@@ -36,7 +32,6 @@ class DetailMenuViewModel(
             field = value
             notifyPropertyChanged(BR.item)
         }
-
 
     fun openEdit() {
         listener.navigateTo(OPEN_EDIT)
@@ -70,7 +65,7 @@ class DetailMenuViewModel(
                     }
                 }
                 notifyPropertyChanged(BR.item)
-                mutableData.postValue(item)
+                mutableDataMenu.postValue(item)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -81,12 +76,11 @@ class DetailMenuViewModel(
 
     fun updateCart() {
         val uid = auth.currentUser?.uid ?: return
+        //Data orderlist
+        cartDatabase.child(uid).child(DatabasePath.ORDER_LIST).child(item.id).setValue(item)
+        listener.navigateTo(OPEN_CHECKOUT)
 
-        cartDatabase.child(uid).child(DatabasePath.ORDER_LIST).child(item.id).setValue(item).addOnSuccessListener {
-            listener.showMessage("Anda telah menambahkan Menu")
-            listener.navigateTo(DetailMenuViewModel.OPEN_CHECKOUT)
-        }.addOnFailureListener {
-            listener.showMessage("Menu gagal ditambahkan")
-        }
     }
+
+
 }

@@ -1,19 +1,26 @@
 package com.example.tugasakhirbaru.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.tugasakhirbaru.BR
 import com.example.tugasakhirbaru.databinding.CheckoutItemBinding
-import com.example.tugasakhirbaru.model.MenuCart
+import com.example.tugasakhirbaru.model.*
+import com.example.tugasakhirbaru.util.ViewModelListener
+import com.example.tugasakhirbaru.util.constants.DatabasePath
+import com.example.tugasakhirbaru.viewmodel.CheckoutViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 
 class MenuCartAdapter(
     private val context: Context,
     private val listener: Listener
 ) :
     RecyclerView.Adapter<MenuCartAdapter.CheckoutViewHolder>() {
-    private val list: ArrayList<MenuCart> = arrayListOf()
+    private val list: ArrayList<Menu> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CheckoutViewHolder =
         CheckoutViewHolder(
@@ -24,7 +31,8 @@ class MenuCartAdapter(
 
     override fun onBindViewHolder(holder: CheckoutViewHolder, position: Int) {
         val item = list[position]
-        holder.binding.item = item
+        holder.binding.item  = item
+//        compareData(listCompoonent,listDefault)
 
         holder.binding.addCountMenu.setOnClickListener {
             item.plus()
@@ -51,7 +59,7 @@ class MenuCartAdapter(
 
     override fun getItemCount(): Int = list.size
 
-    fun setData(dataList: List<MenuCart>) {
+    fun setData(dataList: List<Menu>) {
         list.clear()
         list.addAll(dataList)
         notifyDataSetChanged()
@@ -61,7 +69,8 @@ class MenuCartAdapter(
         RecyclerView.ViewHolder(binding.root)
 
     interface Listener {
-        fun updateItem(item: MenuCart)
+        fun updateItem(item: Menu)
         fun removeItem(id: String)
     }
+
 }

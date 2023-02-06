@@ -42,7 +42,7 @@ object KotlinExt {
         }
     }
 
-    fun Activity.openEditProfileActivity() {
+    fun Context.openEditProfileActivity() {
         Intent(this, EditProfileActivity::class.java).run {
             startActivity(this)
         }
@@ -55,9 +55,17 @@ object KotlinExt {
         }
     }
 
-    fun Context.openCheckoutActivity() {
+    fun Activity.openCheckoutActivity() {
         Intent(this, CheckoutActivity::class.java).run {
             startActivity(this)
         }
+        finish()
+    }
+
+    fun Activity.openAdminActivity(){
+        Intent(this, AdminActivity::class.java).run {
+            startActivity(this)
+        }
+        finish()
     }
 }

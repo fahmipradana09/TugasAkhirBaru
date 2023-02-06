@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tugasakhirbaru.adapter.MenuCartAdapter
 import com.example.tugasakhirbaru.databinding.ActivityCheckoutBinding
-import com.example.tugasakhirbaru.model.MenuCart
+import com.example.tugasakhirbaru.repository.UserPreference
+import com.example.tugasakhirbaru.util.KotlinExt.openHomeActivity
 import com.example.tugasakhirbaru.util.ViewModelListener
+import com.example.tugasakhirbaru.util.constants.Constants.OPEN_HOME
 import com.example.tugasakhirbaru.util.constants.DatabasePath
 import com.example.tugasakhirbaru.viewmodel.CheckoutViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -20,6 +22,8 @@ class CheckoutActivity : AppCompatActivity(), ViewModelListener, MenuCartAdapter
         CheckoutViewModel(
             FirebaseAuth.getInstance(),
             FirebaseDatabase.getInstance().getReference(DatabasePath.USER_CART),
+            FirebaseDatabase.getInstance().getReference(DatabasePath.TRANSACTION),
+            UserPreference.getInstance(this),
             this
         )
     }
@@ -30,7 +34,6 @@ class CheckoutActivity : AppCompatActivity(), ViewModelListener, MenuCartAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityCheckoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.viewModel = viewModel
@@ -40,18 +43,23 @@ class CheckoutActivity : AppCompatActivity(), ViewModelListener, MenuCartAdapter
         viewModel.listData.observe(this) { list ->
             adapter.setData(list)
         }
+
         viewModel.getUserCart()
+        val userPref = UserPreference.getInstance(this).getUser()
+        binding.item = userPref
     }
+
 
     override fun showMessage(message: String?, isLong: Boolean) {
         Toast.makeText(this, message, if (isLong) Toast.LENGTH_LONG else Toast.LENGTH_SHORT).show()
     }
 
     override fun navigateTo(param: String) {
-        TODO("Not yet implemented")
+        if(param == OPEN_HOME){
+            openHomeActivity()
+        }
     }
-
-    override fun updateItem(item: MenuCart) {
+    override fun updateItem(item: com.example.tugasakhirbaru.model.Menu) {
         viewModel.updateItem(item)
     }
 

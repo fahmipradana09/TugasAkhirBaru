@@ -41,6 +41,10 @@ class HomeActivity : AppCompatActivity(), ViewModelListener {
         setContentView(binding.root)
         setupMenu()
 
+        binding.toolbar.cartButton.setOnClickListener {
+            openCheckoutActivity()
+        }
+
         binding.viewModel = viewModel
         binding.menuList.adapter = adapter
         binding.menuList.layoutManager = GridLayoutManager(this@HomeActivity, 2)
@@ -56,11 +60,7 @@ class HomeActivity : AppCompatActivity(), ViewModelListener {
         popupMenu.menuInflater.inflate(R.menu.option_menu, popupMenu.menu)
         popupMenu.setOnMenuItemClickListener { item ->
             when (item.itemId) {
-                R.id.checkout -> {
-                    openCheckoutActivity()
-                    true
-                }
-                R.id.profile -> {
+                R.id.profileMenu -> {
                     openProfileActivity()
                     true
                 }

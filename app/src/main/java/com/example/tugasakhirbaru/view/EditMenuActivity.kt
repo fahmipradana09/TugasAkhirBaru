@@ -10,6 +10,7 @@ import com.example.tugasakhirbaru.adapter.ComponentAdapter
 import com.example.tugasakhirbaru.databinding.ActivityEditIngredientBinding
 import com.example.tugasakhirbaru.model.ComponentChecklist
 import com.example.tugasakhirbaru.model.Menu
+import com.example.tugasakhirbaru.repository.UserPreference
 import com.example.tugasakhirbaru.util.KotlinExt.openCheckoutActivity
 import com.example.tugasakhirbaru.util.ViewModelListener
 import com.example.tugasakhirbaru.util.constants.DatabasePath

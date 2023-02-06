@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/checkout"
-        android:title="Checkout"
-        android:icon="@drawable/ic_cart"
-        app:showAsAction="always" />
-    <item android:id="@+id/profile"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/tools">
+    <item android:id="@+id/profileMenu"
         android:title="@string/profile"/>
     <item android:id="@+id/logout"
         android:title="@string/logout"/>

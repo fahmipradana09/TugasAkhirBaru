@@ -11,6 +11,7 @@ data class ComponentChecklist(
     var isChecked: Boolean = false,
     var isMandatory: Boolean = true,
 ) : Parcelable {
+
     fun getText() = "$menu ($Kkal Kkal)"
 
     fun getKkalInString() = "$Kkal kkal"

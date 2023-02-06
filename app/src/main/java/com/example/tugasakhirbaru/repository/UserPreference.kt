@@ -1,40 +1,57 @@
 package com.example.tugasakhirbaru.repository
 
-import android.content.ClipData.Item
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.stringPreferencesKey
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
+import android.content.Context
+import com.example.tugasakhirbaru.model.Cart
+import com.example.tugasakhirbaru.model.ComponentChecklist
+import com.example.tugasakhirbaru.model.Users
+import com.example.tugasakhirbaru.util.constants.DatabasePath
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
-//class UserPreference private constructor(private val dataStore :DataStore<Preferences>) {
-//    private val USER_TOKEN_KEY = stringPreferencesKey("user_token")
-//    private val USER_EMAIL_KEY = stringPreferencesKey("user_email")
-//    private val USER_NAME_KEY = stringPreferencesKey("user_name")
-//    private val MENU_NAME_KEY = stringPreferencesKey("menu_name")
-//    private val MENU_PRICE_KEY = stringPreferencesKey("menu_price")
-//    private val MENU_DESC_KEY = stringPreferencesKey("menu_desc")
-//    private val MENU_INGREDIENT_KEY = stringPreferencesKey("menu_ingredient")
-//    private val ITEM_KEY = stringPreferencesKey("item_key")
-//
-//    fun getItemUser(): Flow<ItemMenu> = dataStore.data.map {
-//       it[MENU_NAME_KEY] ?: DEFAULT_VALUE
-//    }
-//
-//    suspend fun saveItemUser(itemUser : ItemUser)
-//
-//    companion object {
-//        @Volatile
-//        private var INSTANCE: UserPreference? = null
-//        const val DEFAULT_VALUE = "not_set_yet"
-//
-//        fun getInstance(dataStore: DataStore<Preferences>) : UserPreference {
-//            return INSTANCE ?: synchronized(this) {
-//                val instance = UserPreference(dataStore)
-//                INSTANCE = instance
-//                instance
-//            }
-//        }
-//    }
-//
-//}
+class UserPreference private constructor(context: Context) {
+    private val sharedPref = context.getSharedPreferences(DatabasePath.LOCALPREF, Context.MODE_PRIVATE)
+    private val gson = Gson()
+
+    fun saveCart(cart: Cart) {
+        val json = gson.toJson(cart)
+        val editor = sharedPref.edit()
+        editor.putString("cart", json)
+        editor.apply()
+    }
+
+    fun getCart(): Cart {
+        val json = sharedPref.getString("cart", "")
+        return gson.fromJson(json, Cart::class.java)
+    }
+
+    fun saveDetailIngredient(list: ArrayList<ComponentChecklist>) {
+        val json = gson.toJson(list)
+        val editor = sharedPref.edit()
+        editor.putString("detailIngredient", json)
+        editor.apply()
+    }
+
+    fun getDetailIngredient(): ArrayList<ComponentChecklist> {
+        val json = sharedPref.getString("detailIngredient", "")
+        val type = object : TypeToken<ArrayList<ComponentChecklist>>() {}.type
+        return gson.fromJson(json, type)
+    }
+
+    fun saveUser(user: Users) {
+        val json = gson.toJson(user)
+        val editor = sharedPref.edit()
+        editor.putString("user", json)
+        editor.apply()
+    }
+
+    fun getUser(): Users {
+        val json = sharedPref.getString("user", "")
+        return gson.fromJson(json, Users::class.java)
+    }
+
+    companion object {
+        fun getInstance(context: Context): UserPreference {
+            return UserPreference(context)
+        }
+    }
+}

@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tugasakhirbaru.databinding.ActivityEditProfileBinding
 import com.example.tugasakhirbaru.model.Users
+import com.example.tugasakhirbaru.repository.UserPreference
 import com.example.tugasakhirbaru.util.KotlinExt.openProfileActivity
 import com.example.tugasakhirbaru.util.ViewModelListener
 import com.google.firebase.auth.FirebaseAuth
@@ -13,7 +14,9 @@ import com.google.firebase.database.*
 
 class EditProfileActivity : AppCompatActivity(), ViewModelListener {
     lateinit var binding: ActivityEditProfileBinding
-
+    private val userPreference:UserPreference by lazy{
+        UserPreference.getInstance(this)
+    }
     private val auth: FirebaseAuth by lazy {
         FirebaseAuth.getInstance()
     }
@@ -64,6 +67,7 @@ class EditProfileActivity : AppCompatActivity(), ViewModelListener {
                         val phone = snapshot.child("phone").value.toString()
                         val user = Users(email= email, username = username, password = password, alamat = alamat, phone = phone)
                         Log.d("tes", "user : $user")
+                        userPreference.saveUser(user!!)
                         binding.item = user
                     }
                 }

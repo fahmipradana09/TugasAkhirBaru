@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.tugasakhirbaru.R
 import com.example.tugasakhirbaru.databinding.ActivityLoginBinding
+import com.example.tugasakhirbaru.repository.UserPreference
+import com.example.tugasakhirbaru.util.KotlinExt.openAdminActivity
 import com.example.tugasakhirbaru.util.KotlinExt.openHomeActivity
 import com.example.tugasakhirbaru.util.KotlinExt.openRegisterActivity
 import com.example.tugasakhirbaru.util.ViewModelListener
@@ -18,6 +20,9 @@ import com.google.firebase.database.FirebaseDatabase
 class LoginActivity : AppCompatActivity(), ViewModelListener {
     lateinit var binding: ActivityLoginBinding
 
+    private val userPreference: UserPreference by lazy{
+        UserPreference.getInstance(this)
+    }
     private val database: DatabaseReference by lazy {
         FirebaseDatabase.getInstance().getReference("users")
     }
@@ -27,7 +32,7 @@ class LoginActivity : AppCompatActivity(), ViewModelListener {
     }
 
     private val viewModel: LoginViewModel by lazy {
-        LoginViewModel(auth, database, this)
+        LoginViewModel(auth, database,userPreference,this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,6 +57,9 @@ class LoginActivity : AppCompatActivity(), ViewModelListener {
     override fun navigateTo(param: String) {
         if (param == Constants.HOME_PAGE) {
             openHomeActivity()
+        }
+        if (param == Constants.OPEN_ADMIN){
+            openAdminActivity()
         }
     }
 

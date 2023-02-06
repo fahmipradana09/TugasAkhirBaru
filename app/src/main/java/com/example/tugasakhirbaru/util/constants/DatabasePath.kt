@@ -5,4 +5,9 @@ object DatabasePath {
     const val COMPONENT = "component"
     const val INGREDIENT = "ingredient"
     const val ORDER_LIST = "orderList"
+    const val TRANSACTION = "transaction"
+    const val USER = "users"
+    const val DEFAULT = "default"
+    const val LOCALPREF = "localPref"
+    const val DETAIL_INGREDIENT = "detailIngredient"
 }

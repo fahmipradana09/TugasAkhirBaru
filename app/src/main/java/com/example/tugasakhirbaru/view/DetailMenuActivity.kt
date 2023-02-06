@@ -53,7 +53,7 @@ class DetailMenuActivity : AppCompatActivity(), ViewModelListener {
                 Glide.with(this).load(data.picture).into(binding.ivDetailMakanan)
             }
 
-            viewModel.data.observe(this) { menu ->
+            viewModel.dataMenu.observe(this) { menu ->
                 adapter.setData(menu.detailIngredient)
             }
 

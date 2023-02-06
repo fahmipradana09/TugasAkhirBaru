@@ -44,6 +44,9 @@
         <activity
             android:name=".view.CheckoutActivity"
             android:exported="false"/>
+        <activity
+            android:name=".view.AdminActivity"
+            android:exported="false"/>
        
     </application>
 

@@ -26,4 +26,14 @@ data class Users(
 
     @Exclude
     fun isProfileBlank() = username.isBlank() && email.isBlank() && password.isBlank()
+
+    @Exclude
+    fun isDataBlank() = alamat.isBlank() || username.isBlank() || phone.isBlank()
+    @Exclude
+    fun toHashMap(address: String, username: String, phone : String): HashMap<String, Any?> = hashMapOf(
+        "alamat" to address,
+        "username" to username,
+        "phone" to phone
+    )
+
 }
