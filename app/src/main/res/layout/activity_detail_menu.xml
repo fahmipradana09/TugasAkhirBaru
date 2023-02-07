@@ -9,7 +9,7 @@
     </data>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             tools:context=".view.DetailMenuActivity">
 
             <include
@@ -22,29 +22,32 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ScrollView
+                android:id="@+id/container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="16dp"
                 android:orientation="vertical"
-                android:layout_marginTop="40dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/addCartBtn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toBottomOf="@+id/toolbar">
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="30dp"
-                            android:layout_marginEnd="30dp"
                             android:layout_marginTop="20dp"
+                            android:layout_marginEnd="30dp"
                             android:gravity="center">
 
                             <ImageView
@@ -104,8 +107,8 @@
                                     android:layout_marginEnd="10dp"
                                     android:background="@drawable/roundedsquare_for_buttonadd"
                                     android:backgroundTint="@color/white"
-                                    android:src="@drawable/remove_icon"
                                     android:onClick="@{() -> viewModel.minus()}"
+                                    android:src="@drawable/remove_icon"
                                     android:textColor="@color/black" />
 
                                 <TextView
@@ -114,8 +117,8 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginEnd="10dp"
                                     android:text="@{viewModel.item.quantityInString}"
-                                    tools:text="@string/numberCount"
-                                    android:textSize="25sp" />
+                                    android:textSize="25sp"
+                                    tools:text="@string/numberCount" />
 
                                 <ImageButton
                                     android:id="@+id/addCountMenu"
@@ -123,8 +126,8 @@
                                     android:layout_height="35dp"
                                     android:layout_gravity="center"
                                     android:background="@drawable/roundedsquare_for_buttonadd"
-                                    android:src="@drawable/add_icon"
                                     android:onClick="@{() -> viewModel.plus()}"
+                                    android:src="@drawable/add_icon"
                                     android:textColor="@color/black" />
                             </LinearLayout>
                         </LinearLayout>
@@ -186,9 +189,9 @@
                                     android:layout_gravity="end"
                                     android:background="@drawable/roundedsquare"
                                     android:backgroundTint="@color/yellow"
+                                    android:onClick="@{() -> viewModel.openEdit()}"
                                     android:text="@string/edit"
-                                    android:textColor="@color/black"
-                                    android:onClick="@{() -> viewModel.openEdit()}"/>
+                                    android:textColor="@color/black" />
                             </LinearLayout>
                         </LinearLayout>
 
@@ -211,34 +214,55 @@
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/ingredientList"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="158dp"
                                 android:layout_marginTop="10dp"
                                 tools:itemCount="2"
-                                tools:listitem="@layout/layout_nutrition"/>
+                                tools:listitem="@layout/layout_nutrition" />
                         </LinearLayout>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_gravity="bottom"
-                        android:layout_marginTop="40dp"
-                        android:layout_marginBottom="30dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent">
 
-                        <Button
-                            android:id="@+id/addCartBtn"
-                            android:layout_width="350dp"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:onClick="@{() -> viewModel.updateCart()}"
-                            android:background="@drawable/lessroundedsquare"
-                            android:text="@string/TambahKeKeranjang"
-                            android:textColor="@color/black" />
+                            android:layout_marginStart="30dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginEnd="30dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/total_kalori"
+                                android:textColor="@color/black"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="@{viewModel.item.totalCaloriesInString()}"
+                                android:textColor="@color/black"
+                                android:textSize="20sp"
+                                tools:text="500 Kkal" />
+
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
             </ScrollView>
+
+            <Button
+                    android:id="@+id/addCartBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:onClick="@{() -> viewModel.updateCart()}"
+                    android:background="@drawable/lessroundedsquare"
+                    android:text="@string/TambahKeKeranjang"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/container"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

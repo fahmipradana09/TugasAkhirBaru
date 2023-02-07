@@ -15,7 +15,7 @@
     <string name="DummyKontenKomposisi1">Nasi</string>
     <string name="DummyKontenKomposisi2">Ayam</string>
     <string name="TambahKeKeranjang">Tambah ke Keranjang</string>
-    <string name="numberCount">0</string>
+    <string name="numberCount">1</string>
     <string name="Keranjang">Keranjang</string>
     <string name="custom">Custom : Daging, Telur, Selada</string>
     <string name="beli">Beli</string>
@@ -51,6 +51,11 @@
     <string name="Kkal">1400 Kkal</string>
     <string name="hapus">Hapus</string>
     <string name="DummyHarga">Rp 1.230.000</string>
+    <string name="Oreder">Oreder LIst</string>
+    <string name="status">Prepared</string>
+    <string name="timestamp">10::00 32 January 2001</string>
+    <string name="price">Rp 20000</string>
+    <string name="total_kalori">Total Kalori:</string>
 
     <string-array name="filter_makanan">
         <item>A-Z</item>

@@ -55,11 +55,11 @@ object KotlinExt {
         }
     }
 
-    fun Activity.openCheckoutActivity() {
+    fun Context.openCheckoutActivity() {
         Intent(this, CheckoutActivity::class.java).run {
             startActivity(this)
         }
-        finish()
+
     }
 
     fun Activity.openAdminActivity(){

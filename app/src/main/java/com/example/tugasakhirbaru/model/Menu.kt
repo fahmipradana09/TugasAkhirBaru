@@ -32,7 +32,7 @@ data class Menu(
     fun plus() = if (quantity > 100) null else quantity++
 
     @Exclude
-    fun minus() = if (quantity < 1) null else quantity--
+    fun minus() = if (quantity <= 1) null else quantity--
 
     @Exclude
     fun quantityInString() = quantity.toString()

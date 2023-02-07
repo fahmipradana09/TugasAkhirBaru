@@ -40,25 +40,24 @@ class LoginViewModel(
 
             if (it.isSuccessful && !userId.isNullOrBlank()) {
                  database.child(userId).addListenerForSingleValueEvent(object : ValueEventListener {
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            val user = snapshot.getValue(Users::class.java)
-                            if (user != null  && user.role == "admin"){
-                                listener.showMessage("Login $userId telah berhasil dilakukan.")
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val user = snapshot.getValue(Users::class.java)
+                        if (user != null ){
+                            listener.showMessage("Login $userId telah berhasil dilakukan.")
+                            if (user.role == "admin"){
                                 listener.navigateTo(Constants.OPEN_ADMIN)
-                            }
-                            else {
-                                listener.showMessage("Login $userId telah berhasil dilakukan.")
+                            }else{
                                 listener.navigateTo(Constants.HOME_PAGE)
                             }
-                            userPreference.saveUser(user!!)
-                            Log.i("tes","user : $user")
 
                         }
+                        userPreference.saveUser(user!!)
+                    }
 
-                        override fun onCancelled(error: DatabaseError) {
-                            listener.showMessage(error.message)
-                        }
-                    })
+                    override fun onCancelled(error: DatabaseError) {
+                        listener.showMessage(error.message)
+                    }
+                })
             } else {
                 if (userId.isNullOrBlank()) {
                     listener.showMessage("Terjadi masalah saat autentikasi.")

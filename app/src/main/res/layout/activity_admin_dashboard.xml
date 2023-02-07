@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="viewModel"
             type="com.example.tugasakhirbaru.viewmodel.AdminViewModel" />
     </data>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".view.AdminActivity">
-
     <include
         android:id="@+id/toolbar"
         layout="@layout/layout_toolbar"
@@ -22,6 +21,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:menuVisible="@{true}"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="vertical">
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -29,24 +35,21 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         android:text="@string/pesanan"
+        android:layout_gravity="start"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+        android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/ivPesanan"
-        android:layout_width="350dp"
-        android:layout_height="200dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/ayamgoreng" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/orderList"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            tools:itemCount="4"
+            tools:listitem="@layout/transaction_item" />
 
-    <Button
+        <Button
         android:id="@+id/btnTambahMenu"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -83,5 +86,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:background="@drawable/roundedsquare"/>
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

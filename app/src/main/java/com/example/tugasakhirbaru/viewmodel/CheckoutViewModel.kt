@@ -1,7 +1,5 @@
 package com.example.tugasakhirbaru.viewmodel
 
-import android.provider.ContactsContract.Data
-import android.util.Log
 import androidx.databinding.Bindable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -14,7 +12,6 @@ import com.example.tugasakhirbaru.util.constants.Constants.OPEN_HOME
 import com.example.tugasakhirbaru.util.constants.DatabasePath
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.google.firebase.database.ktx.getValue
 import java.util.*
 
 class CheckoutViewModel(
@@ -72,18 +69,21 @@ class CheckoutViewModel(
         val userData = userPreference.getUser()
         val id = databaseTransaction.push().key ?: ""
         val dbTransaction = databaseTransaction.child(id)
-        val dateMap = mutableMapOf<String, Any>()
+        val additionData = mutableMapOf<String, Any>()
+        val orderListCount = databaseTransaction.child(DatabasePath.ORDER_LIST)
 
 //        if (userData.isDataBlank()){
 //           listener.showMessage("Data anda masih kosong")
 //            return
 //        }
 
-        dateMap["date"] = timestamp.toString()
+        additionData["date"] = timestamp.toString()
+        additionData["totalPrice"] = cart.totalPrice()
+        additionData["quantity"] = cart.totalQuantity()
 
-        dbTransaction.child(DatabasePath.ORDER_LIST).setValue(cart.orderList)
+        dbTransaction.setValue(cart)
         dbTransaction.updateChildren(userData.toHashMap(userData.alamat,userData.username,userData.phone))
-        dbTransaction.updateChildren(dateMap)
+        dbTransaction.updateChildren(additionData)
 
         listener.showMessage("Data anda masih belum lengkap")
     }

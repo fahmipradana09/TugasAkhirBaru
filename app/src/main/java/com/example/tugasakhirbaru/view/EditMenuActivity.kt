@@ -51,8 +51,8 @@ class EditMenuActivity : AppCompatActivity(), ComponentAdapter.Listener, ViewMod
                 Glide.with(this).load(data.picture).into(binding.ivDetailMakanan)
             }
             adapter.setData(data.detailIngredient)
-            viewModel.getIngredient()
         }
+        viewModel.getIngredient()
 
         binding.componentList.layoutManager = LinearLayoutManager(this)
         binding.componentList.adapter = adapter

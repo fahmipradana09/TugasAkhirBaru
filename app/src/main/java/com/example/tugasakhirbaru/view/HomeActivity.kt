@@ -12,23 +12,20 @@ import com.example.tugasakhirbaru.util.KotlinExt.openCheckoutActivity
 import com.example.tugasakhirbaru.util.KotlinExt.openLoginActivity
 import com.example.tugasakhirbaru.util.KotlinExt.openProfileActivity
 import com.example.tugasakhirbaru.util.ViewModelListener
+import com.example.tugasakhirbaru.util.constants.DatabasePath
 import com.example.tugasakhirbaru.viewmodel.HomeViewModel
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class HomeActivity : AppCompatActivity(), ViewModelListener {
     lateinit var binding: ActivityHomeBinding
-    private val database: DatabaseReference by lazy {
-        FirebaseDatabase.getInstance().getReference("menus")
-    }
-
-    private val auth: FirebaseAuth by lazy {
-        FirebaseAuth.getInstance()
-    }
 
     private val viewModel: HomeViewModel by lazy {
-        HomeViewModel(database, this)
+        HomeViewModel(
+            FirebaseDatabase.getInstance().getReference(DatabasePath.MENU),
+            FirebaseAuth.getInstance(),
+            this,
+        )
     }
 
     private val adapter: MenuAdapter by lazy {
@@ -52,6 +49,7 @@ class HomeActivity : AppCompatActivity(), ViewModelListener {
         viewModel.listData.observe(this) { listData ->
             adapter.setData(listData)
         }
+
         viewModel.getMenuData()
     }
 
@@ -65,7 +63,7 @@ class HomeActivity : AppCompatActivity(), ViewModelListener {
                     true
                 }
                 R.id.logout -> {
-                    auth.signOut()
+                    viewModel.auth.signOut()
                     finish()
                     openLoginActivity()
                     true
