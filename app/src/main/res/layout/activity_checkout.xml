@@ -111,6 +111,17 @@
                         android:layout_height="wrap_content"
                         tools:itemCount="2"
                         tools:listitem="@layout/checkout_item" />
+
+                    <TextView
+                        android:id="@+id/tvEmptyList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/error_empty_data"
+                        android:layout_gravity="center"
+                        android:visibility="gone"
+                        android:textSize="24sp"
+                        android:textColor="@color/black"/>
+
                 </LinearLayout>
 
                 <Button
@@ -182,7 +193,6 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/lessroundedsquare"
-        android:onClick="@{() -> viewModel.transaction()}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

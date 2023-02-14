@@ -1,11 +1,19 @@
 package com.example.tugasakhirbaru.view
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.View
+import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tugasakhirbaru.R
 import com.example.tugasakhirbaru.adapter.MenuCartAdapter
 import com.example.tugasakhirbaru.databinding.ActivityCheckoutBinding
+import com.example.tugasakhirbaru.databinding.ConfirmDialogBinding
+import com.example.tugasakhirbaru.helper.showDialog
 import com.example.tugasakhirbaru.repository.UserPreference
 import com.example.tugasakhirbaru.util.KotlinExt.openHomeActivity
 import com.example.tugasakhirbaru.util.ViewModelListener
@@ -13,7 +21,7 @@ import com.example.tugasakhirbaru.util.constants.Constants.OPEN_HOME
 import com.example.tugasakhirbaru.util.constants.DatabasePath
 import com.example.tugasakhirbaru.viewmodel.CheckoutViewModel
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.FirebaseDatabase
 
 class CheckoutActivity : AppCompatActivity(), ViewModelListener, MenuCartAdapter.Listener {
     lateinit var binding: ActivityCheckoutBinding
@@ -42,9 +50,20 @@ class CheckoutActivity : AppCompatActivity(), ViewModelListener, MenuCartAdapter
 
         viewModel.listData.observe(this) { list ->
             adapter.setData(list)
+            if (list.isEmpty()){
+                binding.tvEmptyList.visibility = View.VISIBLE
+            }else{
+                binding.tvEmptyList.visibility = View.GONE
+            }
+        }
+
+        binding.btnBayar.setOnClickListener {
+            viewModel.transaction()
+            showDialog()
         }
 
         viewModel.getUserCart()
+
         val userPref = UserPreference.getInstance(this).getUser()
         binding.item = userPref
     }

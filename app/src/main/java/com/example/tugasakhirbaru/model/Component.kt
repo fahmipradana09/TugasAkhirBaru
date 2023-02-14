@@ -7,7 +7,10 @@ import kotlinx.parcelize.Parcelize
 data class Component(
     var menu: String = "",
     var Kkal: Double = 0.0,
+    var carbo: Double = 0.0,
+    var fat: Double = 0.0,
+    var protein: Double = 0.0,
     var id: String = ""
 ) : Parcelable {
-    val stringKkal = Kkal.toString()
+
 }

@@ -52,7 +52,6 @@ class EditMenuActivity : AppCompatActivity(), ComponentAdapter.Listener, ViewMod
             }
             adapter.setData(data.detailIngredient)
         }
-        viewModel.getIngredient()
 
         binding.componentList.layoutManager = LinearLayoutManager(this)
         binding.componentList.adapter = adapter

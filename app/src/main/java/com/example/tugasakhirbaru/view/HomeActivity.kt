@@ -5,10 +5,13 @@ import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tugasakhirbaru.R
+import com.example.tugasakhirbaru.adapter.HorzitontalMenuAdapter
 import com.example.tugasakhirbaru.adapter.MenuAdapter
 import com.example.tugasakhirbaru.databinding.ActivityHomeBinding
 import com.example.tugasakhirbaru.util.KotlinExt.openCheckoutActivity
+import com.example.tugasakhirbaru.util.KotlinExt.openHistory
 import com.example.tugasakhirbaru.util.KotlinExt.openLoginActivity
 import com.example.tugasakhirbaru.util.KotlinExt.openProfileActivity
 import com.example.tugasakhirbaru.util.ViewModelListener
@@ -28,9 +31,14 @@ class HomeActivity : AppCompatActivity(), ViewModelListener {
         )
     }
 
-    private val adapter: MenuAdapter by lazy {
+    private val adapterMenu: MenuAdapter by lazy {
         MenuAdapter(this)
     }
+
+    private val adapterMenuHorizontal: HorzitontalMenuAdapter by lazy {
+        HorzitontalMenuAdapter(this)
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityHomeBinding.inflate(layoutInflater)
@@ -42,15 +50,27 @@ class HomeActivity : AppCompatActivity(), ViewModelListener {
             openCheckoutActivity()
         }
 
-        binding.viewModel = viewModel
-        binding.menuList.adapter = adapter
-        binding.menuList.layoutManager = GridLayoutManager(this@HomeActivity, 2)
+        binding.toolbar.orderHistoryButton.setOnClickListener {
+            openHistory()
+        }
 
+        binding.viewModel = viewModel
+
+        binding.menuList.adapter = adapterMenu
+        binding.rvHorizontalList.adapter = adapterMenu
+
+        binding.rvHorizontalList.layoutManager = LinearLayoutManager(this@HomeActivity,LinearLayoutManager.HORIZONTAL, false)
+        binding.menuList.layoutManager = GridLayoutManager(this,2)
+
+        viewModel.listData.observe(this){ data ->
+            adapterMenu.setData(data)
+        }
         viewModel.listData.observe(this) { listData ->
-            adapter.setData(listData)
+            adapterMenu.setData(listData)
         }
 
         viewModel.getMenuData()
+        viewModel.getHorzontalData()
     }
 
     private fun setupMenu() {
@@ -63,8 +83,8 @@ class HomeActivity : AppCompatActivity(), ViewModelListener {
                     true
                 }
                 R.id.logout -> {
-                    viewModel.auth.signOut()
                     finish()
+                    viewModel.auth.signOut()
                     openLoginActivity()
                     true
                 }

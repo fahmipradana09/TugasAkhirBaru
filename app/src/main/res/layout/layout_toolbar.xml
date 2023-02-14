@@ -35,6 +35,15 @@
                     android:layout_marginEnd="10dp"
                     android:gravity="end">
                     <ImageView
+                        android:id="@+id/orderHistoryButton"
+                        android:layout_width="30dp"
+                        android:layout_height="50dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/order_history"
+                        android:visibility="@{cartVisible ? View.VISIBLE : View.GONE}"/>
+
+                    <ImageView
                         android:id="@+id/cartButton"
                         android:layout_width="30dp"
                         android:layout_height="50dp"
@@ -42,12 +51,14 @@
                         android:layout_gravity="center_vertical"
                         android:src="@drawable/ic_cart"
                         android:visibility="@{cartVisible ? View.VISIBLE : View.GONE}"/>
+
                     <ImageView
                         android:id="@+id/menuButton"
                         android:layout_width="30dp"
                         android:layout_height="50dp"
                         android:src="@drawable/ic_baseline_more_vert_24"
                         android:visibility="@{menuVisible ? View.VISIBLE : View.GONE}" />
+
                 </LinearLayout>
         </LinearLayout>
 

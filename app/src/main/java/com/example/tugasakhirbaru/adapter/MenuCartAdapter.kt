@@ -29,11 +29,10 @@ class MenuCartAdapter(
             )
         )
 
+
     override fun onBindViewHolder(holder: CheckoutViewHolder, position: Int) {
         val item = list[position]
         holder.binding.item  = item
-//        compareData(listCompoonent,listDefault)
-
         holder.binding.addCountMenu.setOnClickListener {
             item.plus()
             listener.updateItem(item)

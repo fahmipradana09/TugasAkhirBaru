@@ -8,7 +8,7 @@
     <string name="textKomposisi">Komposisi :</string>
     <string name="DummyKomposisi">Nasi, Daging Ayam BBQ, Telur, Selada</string>
     <string name="edit">Edit</string>
-    <string name="kandunganNutrisi">Kandungan Nutrisi :</string>
+    <string name="kandunganNutrisi">Kandungan Calorie Setiap Item :</string>
     <string name="DummyNutrisi_makanan">Nasi</string>
     <string name="DummyNutrisi_nutrisi">330 Kkal</string>
     <string name="EditKomposisiPage">Kustomisasi Makanan</string>
@@ -55,7 +55,22 @@
     <string name="status">Prepared</string>
     <string name="timestamp">10::00 32 January 2001</string>
     <string name="price">Rp 20000</string>
-    <string name="total_kalori">Total Kalori:</string>
+    <string name="tvNutrisi">Kandungan Nutrisi :</string>
+    <string name="transactionSuccess">Pesanan anda berhasil</string>
+    <string name="LowCarbo">Low Carbohydrate</string>
+    <string name="LowCalorie">Low Calorie</string>
+    <string name="menu">Menu</string>
+    <string name="timestamp2">12.00</string>
+    <string name="calorie">Calorie : 234 kkal</string>
+    <string name="fat">Fat : 12</string>
+    <string name="protein">Protein : 100</string>
+    <string name="purchase">Purchase History</string>
+    <string name="kalori">Calorie : </string>
+    <string name="tvprotein">Protein : </string>
+    <string name="karbo">Carbohidrat : </string>
+    <string name="tvfat">Fat :</string>
+    <string name="error_empty_data">Anda Belum Memasukkan Menu !</string>
+    <string name="carbo">Carbo : 200 g</string>
 
     <string-array name="filter_makanan">
         <item>A-Z</item>

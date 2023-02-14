@@ -231,18 +231,97 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/total_kalori"
+                                android:text="@string/tvNutrisi"
                                 android:textColor="@color/black"
                                 android:textStyle="bold" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_marginTop="10dp"
-                                android:text="@{viewModel.item.totalCaloriesInString()}"
-                                android:textColor="@color/black"
-                                android:textSize="20sp"
-                                tools:text="500 Kkal" />
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/kalori"
+                                    android:textSize="20sp"
+                                    android:textColor="@color/black"/>
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="end"
+                                    android:text="@{viewModel.item.totalCaloriesInString()}"
+                                    android:textColor="@color/black"
+                                    android:textSize="20sp"
+                                    tools:text="500 Kkal" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="10dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/tvprotein"
+                                    android:textSize="20sp"
+                                    android:textColor="@color/black"/>
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="end"
+                                    android:text="@{viewModel.item.totalProteinInString()}"
+                                    android:textColor="@color/black"
+                                    android:textSize="20sp"
+                                    tools:text="500 Kkal" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="10dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/karbo"
+                                    android:textSize="20sp"
+                                    android:textColor="@color/black"/>
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="end"
+                                    android:text="@{viewModel.item.totalCarboInString()}"
+                                    android:textColor="@color/black"
+                                    android:textSize="20sp"
+                                    tools:text="500 Kkal" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="10dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/tvfat"
+                                    android:textSize="20sp"
+                                    android:textColor="@color/black"/>
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="end"
+                                    android:text="@{viewModel.item.totalFatInString()}"
+                                    android:textColor="@color/black"
+                                    android:textSize="20sp"
+                                    tools:text="500 Kkal" />
+                            </LinearLayout>
 
                         </LinearLayout>
                     </LinearLayout>

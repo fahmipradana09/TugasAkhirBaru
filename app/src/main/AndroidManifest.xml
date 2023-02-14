@@ -47,6 +47,9 @@
         <activity
             android:name=".view.AdminActivity"
             android:exported="false"/>
+        <activity
+            android:name=".view.PurchaseHistoryActivity"
+            android:exported="false"/>
        
     </application>
 

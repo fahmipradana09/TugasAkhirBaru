@@ -78,9 +78,11 @@ class DetailMenuViewModel(
         val uid = auth.currentUser?.uid ?: return
         //Data orderlist
         cartDatabase.child(uid).child(DatabasePath.ORDER_LIST).child(item.id).setValue(item)
+        cartDatabase.child(uid).child(DatabasePath.ORDER_LIST).child(item.id).updateChildren(item.toHashMap(item.totalCarbo(),item.totalProtein(),item.totalFat(),item.totalCalories()))
         listener.navigateTo(OPEN_CHECKOUT)
 
     }
+
 
 
 }

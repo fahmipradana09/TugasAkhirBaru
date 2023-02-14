@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tugasakhirbaru.R
 import com.example.tugasakhirbaru.adapter.AdminAdapter
+import com.example.tugasakhirbaru.adapter.HistoryPurchaseAdapter
 import com.example.tugasakhirbaru.databinding.ActivityAdminDashboardBinding
+import com.example.tugasakhirbaru.databinding.ActivityPurchasehistoryBinding
 import com.example.tugasakhirbaru.model.Menu
 import com.example.tugasakhirbaru.util.KotlinExt.openLoginActivity
 import com.example.tugasakhirbaru.util.ViewModelListener
@@ -15,8 +17,8 @@ import com.example.tugasakhirbaru.viewmodel.AdminViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-class AdminActivity : AppCompatActivity(), ViewModelListener, AdminAdapter.Listener {
-    lateinit var binding: ActivityAdminDashboardBinding
+class PurchaseHistoryActivity : AppCompatActivity(), ViewModelListener, HistoryPurchaseAdapter.Listener {
+    lateinit var binding: ActivityPurchasehistoryBinding
 
     private val viewModel: AdminViewModel by lazy {
         AdminViewModel(
@@ -26,19 +28,18 @@ class AdminActivity : AppCompatActivity(), ViewModelListener, AdminAdapter.Liste
         )
     }
 
-    private val adapter: AdminAdapter by lazy {
-        AdminAdapter(this,this)
+    private val adapter: HistoryPurchaseAdapter by lazy {
+        HistoryPurchaseAdapter(this,this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAdminDashboardBinding.inflate(layoutInflater)
+        binding = ActivityPurchasehistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupMenu()
-        binding.viewModel = viewModel
-        binding.orderList.adapter = adapter
-
-        binding.orderList.layoutManager = LinearLayoutManager(this)
+//        binding.viewModel = viewModel
+        binding.listItem.adapter = adapter
+        binding.listItem.layoutManager = LinearLayoutManager(this)
 
         viewModel.listData.observe(this){ list ->
             adapter.setData(list)

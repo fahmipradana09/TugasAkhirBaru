@@ -59,6 +59,13 @@ object KotlinExt {
         Intent(this, CheckoutActivity::class.java).run {
             startActivity(this)
         }
+    }
+
+
+    fun Context.openHistory() {
+        Intent(this, PurchaseHistoryActivity::class.java).run {
+            startActivity(this)
+        }
 
     }
 

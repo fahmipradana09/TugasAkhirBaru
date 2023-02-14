@@ -50,34 +50,6 @@ class EditMenuViewModel(
         notifyPropertyChanged(BR.item)
     }
 
-    fun getIngredient() {
-        menuDatabase.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val componentList = arrayListOf<Component>()
-                for (children in snapshot.children) {
-                    children.getValue(Component::class.java)?.let { component ->
-                        componentList.add(component)
-                        if (item.ingredient.contains(component.id)) {
-                            val index = item.ingredient.indexOf(component.id)
-                            item.detailIngredient.add(
-                                ComponentChecklist(
-                                    component, item.default[index], item.mandatory[index]
-                                )
-                            )
-
-                        }
-                    }
-                }
-                notifyPropertyChanged(BR.item)
-                mutableData.postValue(item)
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                listener.showMessage(error.message)
-            }
-        })
-    }
-
 
     fun updateCart() {
         val uid = auth.currentUser?.uid ?: return
@@ -88,6 +60,7 @@ class EditMenuViewModel(
 
         cartDatabase.child(uid).child(DatabasePath.ORDER_LIST).child(dataWithPrefix).setValue(item)
         cartDatabase.child(uid).child(DatabasePath.ORDER_LIST).child(dataWithPrefix).updateChildren(data)
+        cartDatabase.child(uid).child(DatabasePath.ORDER_LIST).child(dataWithPrefix).updateChildren(item.toHashMap(item.totalCarbo(),item.totalProtein(),item.totalFat(),item.totalCalories()))
         notifyPropertyChanged(BR.item)
         mutableData.postValue(item)
 
