@@ -65,48 +65,30 @@ class CheckoutViewModel(
 
 
     fun transaction() {
+
         val timestamp = Calendar.getInstance().time
         val userData = userPreference.getUser()
         val id = databaseTransaction.push().key ?: ""
         val dbTransaction = databaseTransaction.child(id)
         val additionData = mutableMapOf<String, Any>()
-        val orderListCount = databaseTransaction.child(DatabasePath.ORDER_LIST)
 
-//        if (userData.isDataBlank()){
-//           listener.showMessage("Data anda masih kosong")
-//            return
-//        }
+        if (userData.isDataBlank()){
+           listener.showMessage("Data anda masih kosong")
+            return
+        }
 
         additionData["date"] = timestamp.toString()
         additionData["totalPrice"] = cart.totalPrice()
+        additionData["totalProtein"] = cart.totalProtein()
+        additionData["totalCarbo"] = cart.totalCarbo()
+        additionData["totalFat"] = cart.totalFat()
+        additionData["totalCalories"] = cart.totalCalories()
         additionData["quantity"] = cart.totalQuantity()
-
+        additionData["uid"] = auth.currentUser!!.uid
         dbTransaction.setValue(cart)
         dbTransaction.updateChildren(userData.toHashMap(userData.alamat,userData.username,userData.phone))
         dbTransaction.updateChildren(additionData)
-
-        listener.showMessage("Data anda masih belum lengkap")
     }
-
-   /* fun compareData(editedIngredient: List<Map<String, Any>>, defaultIngredient: List<Boolean>): Boolean {
-        val uid = auth.currentUser?.uid
-        databaseCart.child(uid!!).addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val dataEdit = dataSnapshot.child(DatabasePath.DETAIL_INGREDIENT).getValue(object : GenericTypeIndicator<List<Map<String, Any>>>() {})
-                val dataDefault = dataSnapshot.child(DatabasePath.DEFAULT).getValue(object : GenericTypeIndicator<List<Boolean>>() {})
-
-                val result = compareData(dataEdit!!, dataDefault!!)
-                Log.i ("tes", "ini result : $result")
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Handle error
-            }
-        })
-        return editedIngredient.zip(defaultIngredient)
-            .all { (map, bool) -> map["checked"] as Boolean == bool }
-    }*/
-
 
     fun updateItem(item: Menu) {
         val uid = auth.currentUser?.uid ?: return

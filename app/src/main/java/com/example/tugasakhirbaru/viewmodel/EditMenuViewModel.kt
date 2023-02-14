@@ -60,7 +60,6 @@ class EditMenuViewModel(
 
         cartDatabase.child(uid).child(DatabasePath.ORDER_LIST).child(dataWithPrefix).setValue(item)
         cartDatabase.child(uid).child(DatabasePath.ORDER_LIST).child(dataWithPrefix).updateChildren(data)
-        cartDatabase.child(uid).child(DatabasePath.ORDER_LIST).child(dataWithPrefix).updateChildren(item.toHashMap(item.totalCarbo(),item.totalProtein(),item.totalFat(),item.totalCalories()))
         notifyPropertyChanged(BR.item)
         mutableData.postValue(item)
 

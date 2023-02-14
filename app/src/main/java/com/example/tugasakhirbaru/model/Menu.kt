@@ -43,80 +43,100 @@ data class Menu(
     @Exclude
     fun totalPrice() = price * quantity
 
-
-    fun totalCalories(): Double {
+    fun totalCaloriesIngredient(): Double {
         var total = 0.0
         for (component in detailIngredient) {
             if (component.isChecked) {
                 total += component.Kkal
             }
         }
-        total *= quantity
         return total
     }
 
-    fun totalFat(): Double {
+    fun totalFatIngredient(): Double {
         var total = 0.0
         for (component in detailIngredient) {
             if (component.isChecked) {
                 total += component.fat
             }
         }
-        total *= quantity
         return total
     }
 
-    fun totalProtein(): Double {
+    fun totalProteinIngredient(): Double {
         var total = 0.0
         for (component in detailIngredient) {
             if (component.isChecked) {
                 total += component.protein
             }
         }
-        total *= quantity
         return total
     }
 
-    fun totalCarbo(): Double {
+    fun totalCarboIngredient(): Double {
         var total = 0.0
         for (component in detailIngredient) {
             if (component.isChecked) {
                 total += component.carbo
             }
         }
-        total *= quantity
         return total
     }
 
     @Exclude
-    fun toHashMap(totalCarbo: Double, totalProtein: Double, totalFat : Double, totalColories :Double): HashMap<String, Any?> = hashMapOf(
+    fun toHashMap(
+        totalCarbo: Double,
+        totalProtein: Double,
+        totalFat: Double,
+        totalCalories: Double
+    ): HashMap<String, Any?> = hashMapOf(
         "totalCarbo" to totalCarbo,
         "totalProtein" to totalProtein,
         "totalFat" to totalFat,
-        "totalCalories" to totalColories
+        "totalCalories" to totalCalories
     )
 
     @Exclude
+    fun totalCalories(): Double {
+        val total = totalCaloriesIngredient() * quantity
+        return total
+    }
+
+    @Exclude
+    fun totalFat(): Double {
+        val total = totalFatIngredient() * quantity
+        return total
+    }
+
+    @Exclude
+    fun totalProtein(): Double {
+        val total = totalProteinIngredient() * quantity
+        return total
+    }
+
+    @Exclude
+    fun totalCarbo(): Double {
+        val total = totalCarboIngredient() * quantity
+        return total
+    }
+
+    @Exclude
     fun totalCaloriesInString(): String {
-        val total = totalCalories()
-        return String.format("%.2f kkal", total)
+        return String.format("%.2f kkal", totalCalories())
     }
 
     @Exclude
     fun totalFatInString(): String {
-        val total = totalFat()
-        return String.format("%.2f g", total)
+        return String.format("%.2f g", totalFat())
     }
 
     @Exclude
     fun totalProteinInString(): String {
-        val total = totalProtein()
-        return String.format("%.2f g", total)
+        return String.format("%.2f g", totalProtein())
     }
 
     @Exclude
     fun totalCarboInString(): String {
-        val total = totalCarbo()
-        return String.format("%.2f g", total)
+        return String.format("%.2f g", totalCarbo())
     }
 }

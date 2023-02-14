@@ -1,19 +1,13 @@
 package com.example.tugasakhirbaru.view
 
-import android.app.Dialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
-import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.tugasakhirbaru.R
 import com.example.tugasakhirbaru.adapter.MenuCartAdapter
 import com.example.tugasakhirbaru.databinding.ActivityCheckoutBinding
-import com.example.tugasakhirbaru.databinding.ConfirmDialogBinding
-import com.example.tugasakhirbaru.helper.showDialog
+import com.example.tugasakhirbaru.helper.Dialog.showDialogSuccess
 import com.example.tugasakhirbaru.repository.UserPreference
 import com.example.tugasakhirbaru.util.KotlinExt.openHomeActivity
 import com.example.tugasakhirbaru.util.ViewModelListener
@@ -59,7 +53,7 @@ class CheckoutActivity : AppCompatActivity(), ViewModelListener, MenuCartAdapter
 
         binding.btnBayar.setOnClickListener {
             viewModel.transaction()
-            showDialog()
+            showDialogSuccess(callback = { openHomeActivity() })
         }
 
         viewModel.getUserCart()

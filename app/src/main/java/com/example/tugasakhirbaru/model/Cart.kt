@@ -10,21 +10,44 @@ data class Cart (
     var status : String = "prepared",
     val orderList: HashMap<String, Menu> = hashMapOf(),
     val totalPrice :Long =0L,
-    val quantity :Int = 0
+    val quantity :Int = 0,
 ) : Parcelable {
-    @Exclude
-    fun totalCalories(): String {
-        var total = 0.0
-        for ((_, item) in orderList) {
-            total += item.totalCalories()
-        }
-        return "$total Kkal"
-    }
-
     fun totalPrice(): Long {
         var total = 0L
         for ((_, item) in orderList) {
             total += item.totalPrice()
+        }
+        return total
+    }
+
+    fun totalProtein(): Double {
+        var total = 0.0
+        for ((_,item) in orderList){
+            total += item.totalProtein()
+        }
+        return total
+    }
+
+    fun totalCarbo(): Double {
+        var total = 0.0
+        for ((_,item) in orderList){
+            total += item.totalCarbo()
+        }
+        return total
+    }
+
+     fun totalFat(): Double {
+            var total = 0.0
+            for ((_,item) in orderList){
+                total += item.totalFat()
+            }
+            return total
+     }
+
+    fun totalCalories(): Double {
+        var total = 0.0
+        for ((_,item) in orderList){
+            total += item.totalCalories()
         }
         return total
     }
@@ -40,4 +63,24 @@ data class Cart (
 
     @Exclude
     fun totalToString() = "Rp ${totalPrice()}"
+
+    @Exclude
+    fun totalCaloriesInString(): String {
+        return String.format("%.2f kkal", totalCalories())
+    }
+
+    @Exclude
+    fun totalFatInString(): String {
+        return String.format("%.2f g", totalFat())
+    }
+
+    @Exclude
+    fun totalProteinInString(): String {
+        return String.format("%.2f g", totalProtein())
+    }
+
+    @Exclude
+    fun totalCarboInString(): String {
+        return String.format("%.2f g", totalCarbo())
+    }
 }

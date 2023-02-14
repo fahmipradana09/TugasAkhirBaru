@@ -29,8 +29,9 @@
                 app:srcCompat="@drawable/ayamgoreng" />
 
             <LinearLayout
-                android:layout_width="180dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
@@ -64,7 +65,7 @@
                         android:id="@+id/tvCustom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{item.detailIngredientInString()}"
+                        android:text="@{item.ingredientInString()}"
                         tools:text="@string/custom"
                         android:textSize="12sp" />
 
@@ -80,7 +81,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-
                     android:orientation="horizontal">
 
                     <ImageButton

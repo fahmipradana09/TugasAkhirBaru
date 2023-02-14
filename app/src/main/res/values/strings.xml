@@ -71,6 +71,10 @@
     <string name="tvfat">Fat :</string>
     <string name="error_empty_data">Anda Belum Memasukkan Menu !</string>
     <string name="carbo">Carbo : 200 g</string>
+    <string name="tvCalorie">Calories : </string>
+    <string name="tvProtein">Protein : </string>
+    <string name="tvFat">Fat : </string>
+    <string name="tvCarbo">Carbohydrate : </string>
 
     <string-array name="filter_makanan">
         <item>A-Z</item>

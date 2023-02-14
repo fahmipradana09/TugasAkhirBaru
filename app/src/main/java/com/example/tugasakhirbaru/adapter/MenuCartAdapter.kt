@@ -43,6 +43,7 @@ class MenuCartAdapter(
             item.minus()
             listener.updateItem(item)
             holder.binding.item = item
+
         }
 
         holder.binding.deleteButton.setOnClickListener {

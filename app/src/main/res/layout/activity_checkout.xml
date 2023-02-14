@@ -29,7 +29,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/LLTotal"
+        app:layout_constraintBottom_toTopOf="@+id/listDetail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar">
@@ -39,7 +39,7 @@
             android:layout_height="0dp"
             android:layout_marginBottom="20dp"
             android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@id/LLTotal"
+            app:layout_constraintBottom_toTopOf="@id/listDetail"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar">
@@ -151,38 +151,142 @@
         </LinearLayout>
     </ScrollView>
     <LinearLayout
-        android:id="@+id/LLTotal"
+        android:id="@+id/listDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="20dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/btnBayar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
-        <TextView
-            android:id="@+id/tvTotal"
-            android:layout_width="0dp"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            android:text="@string/Total" />
+            android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@{viewModel.cart.totalToString()}"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textSize="20sp"
-            android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/tvCalorie"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:text="@string/tvCalorie" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@{viewModel.cart.totalCaloriesInString() }"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvProtein"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:text="@string/tvProtein" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@{viewModel.cart.totalProteinInString()}"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvFat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:text="@string/tvFat" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@{viewModel.cart.totalFatInString()}"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvCarbo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:text="@string/tvCarbo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@{viewModel.cart.totalCarboInString()}"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvTotal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:text="@string/Total" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@{viewModel.cart.totalToString()}"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textColor="@color/black"/>
+            </LinearLayout>
+
+        </LinearLayout>
 
 
     <Button

@@ -45,33 +45,29 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvUser"
+                        android:id="@+id/tvTotal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:shadowColor="@color/black"
-                        android:shadowRadius="2"
-                        android:text="Ayam Bakar, Steak Krispi"
+                        android:text="@string/Total"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/tvOrder"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text=""
+                        android:text="@{item.totalPriceToString()}"
                         android:textColor="@color/black"
-                        android:textSize="30sp"
+                        android:textSize="20sp"
                         android:textStyle="bold"
                         tools:text="@string/price" />
 
@@ -87,37 +83,95 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginTop="2dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tvCalorie"
+                            android:layout_marginEnd="10dp"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{item.totalCarboInString()}"
+                            tools:text="@string/calorie"
+                            android:textColor="@color/black"
+                            android:textColorHighlight="@color/black"
+                            android:textSize="16sp" />
+                        </LinearLayout>
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:text="@string/fat"
-                        android:textColor="@color/black"
-                        android:textColorHighlight="@color/black"
-                        android:textSize="18sp" />
-                    <TextView
+                        android:orientation="horizontal"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="2dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tvProtein"
+                            android:layout_marginEnd="10dp"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{item.totalProteinInString()}"
+                            tools:text="@string/protein"
+                            android:textColor="@color/black"
+                            android:textColorHighlight="@color/black"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:text="@string/calorie"
-                        android:textColor="@color/black"
-                        android:textColorHighlight="@color/black"
-                        android:textSize="18sp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="@string/protein"
-                        android:textColor="@color/black"
-                        android:textColorHighlight="@color/black"
-                        android:textSize="18sp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="@string/carbo"
-                        android:textColor="@color/black"
-                        android:textColorHighlight="@color/black"
-                        android:textSize="18sp" />
+                        android:orientation="horizontal"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="2dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tvFat"
+                            android:layout_marginEnd="10dp"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{item.totalFatInString()}"
+                            tools:text="@string/carbo"
+                            android:textColor="@color/black"
+                            android:textColorHighlight="@color/black"
+                            android:textSize="16sp" />
+                    </LinearLayout>
 
-
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="2dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tvCarbo"
+                            android:layout_marginEnd="10dp"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{item.totalCarboInString()}"
+                            tools:text="@string/carbo"
+                            android:textColor="@color/black"
+                            android:textColorHighlight="@color/black"
+                            android:textSize="16sp" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -125,14 +179,14 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="end"
                     android:gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/numberCountDetail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
                         android:text="@{item.quantityToString}"
                         android:textSize="30sp"
                         tools:text="@string/numberCount" />
