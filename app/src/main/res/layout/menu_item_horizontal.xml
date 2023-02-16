@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="item"
+            type="com.example.tugasakhirbaru.model.Menu" />
+        <variable
+            name="viewModel"
+            type="com.example.tugasakhirbaru.viewmodel.HomeViewModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardElevation="8dp">
+
+        <LinearLayout
+            android:id="@+id/cardFood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/black_stroke"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageFood"
+                    android:layout_width="130dp"
+                    android:layout_height="92dp"
+                    android:layout_margin="4dp"
+                    tools:srcCompat="@drawable/ayamgoreng" />
+
+                <TextView
+                    android:id="@+id/tvJudulMakanan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="4dp"
+                    android:singleLine="true"
+                    android:text="@{item.menu}"
+                    tools:text="@string/DummyNamaMakanan"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/tvHargaMakanan"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:shadowColor="@color/black"
+                    android:shadowRadius="2"
+                    android:text="@{item.priceInRupiah()}"
+                    tools:text="@string/HargaMakanan"
+                    android:textColor="@color/yellow"
+                    android:textSize="20sp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

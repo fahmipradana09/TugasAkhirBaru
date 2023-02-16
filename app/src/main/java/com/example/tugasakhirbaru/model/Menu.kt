@@ -15,7 +15,7 @@ data class Menu(
     val default: List<Boolean> = arrayListOf(),
     val mandatory: List<Boolean> = arrayListOf(),
     var quantity: Int = 1,
-    val detailIngredient: ArrayList<ComponentChecklist> = arrayListOf(),
+    val detailIngredient: ArrayList<ComponentChecklist> = arrayListOf()
 ) : Parcelable {
     @Exclude
     fun priceInRupiah() = "Rp ${totalPrice()}"

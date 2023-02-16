@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tugasakhirbaru.R
-import com.example.tugasakhirbaru.adapter.HorzitontalMenuAdapter
+import com.example.tugasakhirbaru.adapter.HorizontalMenuAdapter
 import com.example.tugasakhirbaru.adapter.MenuAdapter
 import com.example.tugasakhirbaru.databinding.ActivityHomeBinding
 import com.example.tugasakhirbaru.util.KotlinExt.openCheckoutActivity
@@ -26,6 +26,7 @@ class HomeActivity : AppCompatActivity(), ViewModelListener {
     private val viewModel: HomeViewModel by lazy {
         HomeViewModel(
             FirebaseDatabase.getInstance().getReference(DatabasePath.MENU),
+            FirebaseDatabase.getInstance().getReference(DatabasePath.COMPONENT),
             FirebaseAuth.getInstance(),
             this,
         )
@@ -35,8 +36,8 @@ class HomeActivity : AppCompatActivity(), ViewModelListener {
         MenuAdapter(this)
     }
 
-    private val adapterMenuHorizontal: HorzitontalMenuAdapter by lazy {
-        HorzitontalMenuAdapter(this)
+    private val adapterMenuHorizontal: HorizontalMenuAdapter by lazy {
+        HorizontalMenuAdapter(this)
     }
 
 
@@ -57,13 +58,13 @@ class HomeActivity : AppCompatActivity(), ViewModelListener {
         binding.viewModel = viewModel
 
         binding.menuList.adapter = adapterMenu
-        binding.rvHorizontalList.adapter = adapterMenu
+        binding.rvHorizontalList.adapter = adapterMenuHorizontal
 
         binding.rvHorizontalList.layoutManager = LinearLayoutManager(this@HomeActivity,LinearLayoutManager.HORIZONTAL, false)
         binding.menuList.layoutManager = GridLayoutManager(this,2)
 
-        viewModel.listData.observe(this){ data ->
-            adapterMenu.setData(data)
+        viewModel.listHorizontalData.observe(this){ data ->
+            adapterMenuHorizontal.setData(data)
         }
         viewModel.listData.observe(this) { listData ->
             adapterMenu.setData(listData)

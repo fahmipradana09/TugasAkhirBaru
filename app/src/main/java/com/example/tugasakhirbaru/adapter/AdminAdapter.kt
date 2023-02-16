@@ -4,14 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.tugasakhirbaru.databinding.MenuItemBinding
 import com.example.tugasakhirbaru.databinding.TransactionItemBinding
 import com.example.tugasakhirbaru.model.Menu
 import com.example.tugasakhirbaru.model.TransactionMenu
-import com.example.tugasakhirbaru.util.KotlinExt.openDetailActivity
 
-class AdminAdapter(private val context: Context,  private val listener: Listener) :
+class AdminAdapter(private val context: Context, private val listener: Listener) :
     RecyclerView.Adapter<AdminAdapter.AdminViewHolder>() {
     private val menuList: ArrayList<TransactionMenu> = arrayListOf()
 
@@ -39,7 +36,8 @@ class AdminAdapter(private val context: Context,  private val listener: Listener
 
     override fun getItemCount(): Int = menuList.size
 
-    class AdminViewHolder(val binding: TransactionItemBinding) : RecyclerView.ViewHolder(binding.root)
+    class AdminViewHolder(val binding: TransactionItemBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     interface Listener {
         fun updateItem(item: Menu)

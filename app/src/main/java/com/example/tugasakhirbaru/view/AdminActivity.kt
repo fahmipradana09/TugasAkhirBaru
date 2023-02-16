@@ -2,6 +2,7 @@ package com.example.tugasakhirbaru.view
 
 import android.os.Bundle
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tugasakhirbaru.R
@@ -72,7 +73,7 @@ class AdminActivity : AppCompatActivity(), ViewModelListener, AdminAdapter.Liste
     }
 
     override fun showMessage(message: String?, isLong: Boolean) {
-        TODO("Not yet implemented")
+        Toast.makeText(this, message, if (isLong) Toast.LENGTH_LONG else Toast.LENGTH_SHORT).show()
     }
 
     override fun navigateTo(param: String) {

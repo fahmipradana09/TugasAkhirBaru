@@ -43,7 +43,6 @@ class LoginViewModel(
                     override fun onDataChange(snapshot: DataSnapshot) {
                         val user = snapshot.getValue(Users::class.java)
                         if (user != null ){
-                            listener.showMessage("Login $userId telah berhasil dilakukan.")
                             if (user.role == "admin"){
                                 listener.navigateTo(Constants.OPEN_ADMIN)
                             }else{

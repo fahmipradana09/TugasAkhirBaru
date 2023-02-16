@@ -2,6 +2,7 @@ package com.example.tugasakhirbaru.view
 
 import android.os.Bundle
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tugasakhirbaru.R
@@ -34,7 +35,6 @@ class PurchaseHistoryActivity : AppCompatActivity(), ViewModelListener, HistoryP
         super.onCreate(savedInstanceState)
         binding = ActivityPurchasehistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        binding.viewModel = viewModel
         binding.listItem.adapter = adapter
         binding.listItem.layoutManager = LinearLayoutManager(this)
 
@@ -47,7 +47,7 @@ class PurchaseHistoryActivity : AppCompatActivity(), ViewModelListener, HistoryP
     }
 
     override fun showMessage(message: String?, isLong: Boolean) {
-        TODO("Not yet implemented")
+        Toast.makeText(this, message, if (isLong) Toast.LENGTH_LONG else Toast.LENGTH_SHORT).show()
     }
 
     override fun navigateTo(param: String) {

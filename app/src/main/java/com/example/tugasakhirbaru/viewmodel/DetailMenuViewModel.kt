@@ -48,30 +48,35 @@ class DetailMenuViewModel(
     }
 
     fun getIngredient() {
-        menuDatabase.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val componentList = arrayListOf<Component>()
-                for (children in snapshot.children) {
-                    children.getValue(Component::class.java)?.let { component ->
-                        componentList.add(component)
-                        if (item.ingredient.contains(component.id)) {
-                            val index = item.ingredient.indexOf(component.id)
-                            item.detailIngredient.add(
-                                ComponentChecklist(
-                                    component, item.default[index], item.mandatory[index]
+        if (item.detailIngredient.size != 0) {
+            item.detailIngredient.clear()
+        }
+            menuDatabase.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val componentList = arrayListOf<Component>()
+                    for (children in snapshot.children) {
+                        children.getValue(Component::class.java)?.let { component ->
+                            componentList.add(component)
+                            if (item.ingredient.contains(component.id)) {
+                                val index = item.ingredient.indexOf(component.id)
+                                item.detailIngredient.add(
+                                    ComponentChecklist(
+                                        component, item.default[index], item.mandatory[index]
+                                    )
                                 )
-                            )
+
+                            }
                         }
                     }
+//                Log.i("tes","${componentList.toString()}")
+                    notifyPropertyChanged(BR.item)
+                    mutableDataMenu.postValue(item)
                 }
-                notifyPropertyChanged(BR.item)
-                mutableDataMenu.postValue(item)
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                listener.showMessage(error.message)
-            }
-        })
+                override fun onCancelled(error: DatabaseError) {
+                    listener.showMessage(error.message)
+                }
+            })
     }
 
     fun updateCart() {

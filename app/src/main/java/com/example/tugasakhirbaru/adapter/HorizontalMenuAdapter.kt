@@ -5,12 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.tugasakhirbaru.databinding.MenuItemBinding
+import com.example.tugasakhirbaru.databinding.MenuItemHorizontalBinding
 import com.example.tugasakhirbaru.model.Menu
 import com.example.tugasakhirbaru.util.KotlinExt.openDetailActivity
 
-class HorzitontalMenuAdapter(private val context: Context) :
-    RecyclerView.Adapter<HorzitontalMenuAdapter.MenuViewHolder>() {
+class HorizontalMenuAdapter(private val context: Context) :
+    RecyclerView.Adapter<HorizontalMenuAdapter.MenuViewHorizontalHolder>() {
     private val menuList: ArrayList<Menu> = arrayListOf()
 
     fun setData(listData: List<Menu>) {
@@ -19,14 +19,14 @@ class HorzitontalMenuAdapter(private val context: Context) :
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuViewHolder =
-        MenuViewHolder(
-            MenuItemBinding.inflate(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuViewHorizontalHolder =
+        MenuViewHorizontalHolder(
+            MenuItemHorizontalBinding.inflate(
                 LayoutInflater.from(context), parent, false
             )
         )
 
-    override fun onBindViewHolder(holder: MenuViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MenuViewHorizontalHolder, position: Int) {
         val item = menuList[position]
         holder.binding.item = item
 
@@ -41,5 +41,5 @@ class HorzitontalMenuAdapter(private val context: Context) :
 
     override fun getItemCount(): Int = menuList.size
 
-    class MenuViewHolder(val binding: MenuItemBinding) : RecyclerView.ViewHolder(binding.root)
+    class MenuViewHorizontalHolder(val binding: MenuItemHorizontalBinding) : RecyclerView.ViewHolder(binding.root)
 }
