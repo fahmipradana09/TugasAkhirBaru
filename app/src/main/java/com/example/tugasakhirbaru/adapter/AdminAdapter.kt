@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tugasakhirbaru.databinding.TransactionItemBinding
 import com.example.tugasakhirbaru.model.Menu
 import com.example.tugasakhirbaru.model.TransactionMenu
+import com.example.tugasakhirbaru.util.KotlinExt.openAdminDetailActivity
 
 class AdminAdapter(private val context: Context, private val listener: Listener) :
     RecyclerView.Adapter<AdminAdapter.AdminViewHolder>() {
@@ -28,9 +29,8 @@ class AdminAdapter(private val context: Context, private val listener: Listener)
     override fun onBindViewHolder(holder: AdminViewHolder, position: Int) {
         val item = menuList[position]
         holder.binding.item = item
-
         holder.binding.cardMenuBought.setOnClickListener {
-//            context.openDetailActivity(item)
+            context.openAdminDetailActivity(item)
         }
     }
 

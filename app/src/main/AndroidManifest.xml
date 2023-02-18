@@ -50,6 +50,9 @@
         <activity
             android:name=".view.PurchaseHistoryActivity"
             android:exported="false"/>
+        <activity
+            android:name=".view.AdminDetailMenuActivity"
+            android:exported="false"/>
        
     </application>
 

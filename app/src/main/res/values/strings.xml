@@ -75,6 +75,12 @@
     <string name="tvProtein">Protein : </string>
     <string name="tvFat">Fat : </string>
     <string name="tvCarbo">Carbohydrate : </string>
+    <string name="DetailPesanan">Detail Pesanan</string>
+    <string name="DetailIngredient">Detail Ingredient :</string>
+    <string name="quantity">10</string>
+    <string name="prepared">Prepared</string>
+    <string name="progress">Progress</string>
+    <string name="done">Done</string>
 
     <string-array name="filter_makanan">
         <item>A-Z</item>
@@ -88,6 +94,14 @@
 <!--        -->
 <!--        <item>Low Protein</item>-->
 <!--        <item>High Protein</item>-->
+
+    </string-array>
+
+    <string-array name="status_transaction">
+        <item>-- Pilih Status --</item>
+        <item>Prepared</item>
+        <item>OnProgress</item>
+        <item>Done</item>
 
     </string-array>
 </resources>

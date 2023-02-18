@@ -41,7 +41,10 @@ class LoginActivity : AppCompatActivity(), ViewModelListener {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         binding.viewModel = viewModel
 
-        if (auth.currentUser != null) {
+        if (auth.currentUser != null && userPreference.getUser().role == "admin") {
+            openAdminActivity()
+
+        }else if (auth.currentUser != null && userPreference.getUser().role == "users"){
             openHomeActivity()
         }
 

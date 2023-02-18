@@ -30,6 +30,7 @@ class RegisterViewModel(
             val userId = auth.currentUser?.uid
             if (result.isSuccessful && !userId.isNullOrBlank()) {
                 database.child(userId).setValue(user).addOnSuccessListener {
+                    database.child(userId).updateChildren(user.roles("users") as Map<String, Any>)
                     listener.showMessage("Data telah berhasil ditambahkan.")
                     listener.navigateTo(LOGIN_PAGE)
                 }.addOnFailureListener {

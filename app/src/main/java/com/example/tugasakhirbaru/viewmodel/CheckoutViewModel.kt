@@ -77,6 +77,7 @@ class CheckoutViewModel(
             return
         }
 
+        additionData["id"] = id
         additionData["date"] = timestamp.toString()
         additionData["totalPrice"] = cart.totalPrice()
         additionData["totalProtein"] = cart.totalProtein()

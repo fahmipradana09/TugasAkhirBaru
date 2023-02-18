@@ -139,4 +139,6 @@ data class Menu(
     fun totalCarboInString(): String {
         return String.format("%.2f g", totalCarbo())
     }
+
+
 }

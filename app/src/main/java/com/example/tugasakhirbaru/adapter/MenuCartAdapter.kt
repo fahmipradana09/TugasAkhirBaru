@@ -43,13 +43,14 @@ class MenuCartAdapter(
             item.minus()
             listener.updateItem(item)
             holder.binding.item = item
-
         }
 
         holder.binding.deleteButton.setOnClickListener {
-            list.removeAt(position)
+            list.removeAt(holder.adapterPosition)
             listener.removeItem(item.id)
-            notifyItemRemoved(position)
+            notifyItemRemoved(holder.adapterPosition)
+            // NOTE: Untuk trigger ulang onBindViewHolder-nya.
+            // notifyItemRangeChanged(0, itemCount)
         }
 
         if (item.imageExists()) {

@@ -1,8 +1,10 @@
 package com.example.tugasakhirbaru.viewmodel
 
-import android.util.Log
 import androidx.databinding.Bindable
-import com.example.tugasakhirbaru.BuildConfig
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.example.tugasakhirbaru.BR
+import com.example.tugasakhirbaru.model.Menu
 import com.example.tugasakhirbaru.model.Users
 import com.example.tugasakhirbaru.repository.UserPreference
 import com.example.tugasakhirbaru.util.ObservableViewModel
@@ -19,6 +21,8 @@ class LoginViewModel(
     private val userPreference: UserPreference, val listener: ViewModelListener
 
 ) : ObservableViewModel() {
+    private val mutableListData: MutableLiveData<Users> = MutableLiveData()
+    val dataUser: LiveData<Users> = mutableListData
     @Bindable
     var user = Users()
 
@@ -39,13 +43,13 @@ class LoginViewModel(
             isLoading = false
 
             if (it.isSuccessful && !userId.isNullOrBlank()) {
-                 database.child(userId).addListenerForSingleValueEvent(object : ValueEventListener {
+                database.child(userId).addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         val user = snapshot.getValue(Users::class.java)
-                        if (user != null ){
-                            if (user.role == "admin"){
+                        if (user != null) {
+                            if (user.role == "admin") {
                                 listener.navigateTo(Constants.OPEN_ADMIN)
-                            }else{
+                            } else {
                                 listener.navigateTo(Constants.HOME_PAGE)
                             }
 

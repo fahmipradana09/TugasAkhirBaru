@@ -6,10 +6,11 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class TransactionMenu(
+    var id : String = "",
     var username: String = "",
     var uid: String = "",
     var date: String = "",
-    var orderList: HashMap <String, Cart> = hashMapOf(),
+    var orderList: HashMap <String, Menu> = hashMapOf(),
     var alamat: String = "",
     var status : String = "prepared",
     var quantity: Int = 1,
@@ -19,7 +20,6 @@ data class TransactionMenu(
     var totalFat: Double = 0.0,
     var totalProtein: Double = 0.0
 ) : Parcelable{
-
     @Exclude
     fun totalCaloriesInString(): String {
         return String.format("%.2f kkal", totalCalories)
@@ -43,6 +43,5 @@ data class TransactionMenu(
     fun quantityToString ()= quantity.toString()
 
     @Exclude
-    fun totalPriceToString () = "Rp ${totalPrice}"
-
+    fun totalPriceToString () = "Rp $totalPrice"
 }

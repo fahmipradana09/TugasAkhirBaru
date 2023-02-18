@@ -4,7 +4,9 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import com.example.tugasakhirbaru.model.Menu
+import com.example.tugasakhirbaru.model.TransactionMenu
 import com.example.tugasakhirbaru.util.constants.IntentNameExtra.MENU_EXTRA
+import com.example.tugasakhirbaru.util.constants.IntentNameExtra.TRANSACTION_EXTRA
 import com.example.tugasakhirbaru.view.*
 
 object KotlinExt {
@@ -74,5 +76,29 @@ object KotlinExt {
             startActivity(this)
         }
         finish()
+    }
+
+    fun Context.openAdminDetailActivity(itemExtra:TransactionMenu){
+        Intent(this,AdminDetailMenuActivity::class.java).run {
+            putExtra(TRANSACTION_EXTRA, itemExtra)
+            startActivity(this)
+        }
+    }
+
+    fun Array<String>.toHashMap(): HashMap<Int, String> {
+        val hashMap = hashMapOf<Int, String>()
+        for ((index, string) in this.withIndex()) {
+            hashMap[index] = string
+        }
+        return hashMap
+    }
+
+    fun <T, E> Map<T,E>.getByValue(find: E): T? {
+        for ((key, value) in this) {
+            if (find == value) {
+                return key
+            }
+        }
+        return null
     }
 }

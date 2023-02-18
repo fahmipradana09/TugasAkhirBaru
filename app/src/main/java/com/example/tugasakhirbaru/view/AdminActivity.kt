@@ -44,8 +44,10 @@ class AdminActivity : AppCompatActivity(), ViewModelListener, AdminAdapter.Liste
         viewModel.listData.observe(this){ list ->
             adapter.setData(list)
         }
+    }
 
-        
+    override fun onResume() {
+        super.onResume()
         viewModel.getOrder()
     }
 

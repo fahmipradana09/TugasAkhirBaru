@@ -6,6 +6,9 @@
         <variable
             name="item"
             type="com.example.tugasakhirbaru.model.TransactionMenu" />
+        <variable
+            type="com.example.tugasakhirbaru.R"
+            name="color" />
     </data>
     <androidx.cardview.widget.CardView
         android:id="@+id/cardMenuBought"
@@ -26,13 +29,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end"
+                android:gravity="center"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
-                    android:layout_gravity="end"
+                    android:layout_gravity="center"
                     android:text="@{item.date}"
                     tools:text="@string/timestamp2"/>
             </LinearLayout>
@@ -71,11 +74,14 @@
                         android:textStyle="bold"
                         tools:text="@string/price" />
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:alpha="1"
-                        android:orientation="horizontal"/>
+                        android:text="@{item.status}"
+                        android:layout_marginTop="10dp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        tools:text = "@string/status" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -99,7 +105,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{item.totalCarboInString()}"
+                            android:text="@{item.totalCaloriesInString()}"
                             tools:text="@string/calorie"
                             android:textColor="@color/black"
                             android:textColorHighlight="@color/black"
