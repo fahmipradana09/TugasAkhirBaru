@@ -13,47 +13,52 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TugasAkhirBaru"
         tools:targetApi="31">
-
+        <activity
+            android:name=".view.AdminHistoryTransactionActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".view.LoginActivity"
             android:exported="true">
-                <intent-filter>
-                    <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-                    <category android:name="android.intent.category.LAUNCHER" />
-                </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".view.RegisterActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".view.HomeActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".view.DetailMenuActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".view.ProfileActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".view.EditProfileActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".view.EditMenuActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".view.CheckoutActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".view.AdminActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".view.PurchaseHistoryActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".view.AdminDetailMenuActivity"
-            android:exported="false"/>
-       
+            android:exported="false" />
     </application>
 
 </manifest>

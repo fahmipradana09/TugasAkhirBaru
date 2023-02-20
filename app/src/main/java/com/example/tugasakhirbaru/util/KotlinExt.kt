@@ -85,6 +85,12 @@ object KotlinExt {
         }
     }
 
+    fun Context.openAdminListTransactionActivity(){
+        Intent(this,AdminHistoryTransactionActivity::class.java).run {
+            startActivity(this)
+        }
+    }
+
     fun Array<String>.toHashMap(): HashMap<Int, String> {
         val hashMap = hashMapOf<Int, String>()
         for ((index, string) in this.withIndex()) {

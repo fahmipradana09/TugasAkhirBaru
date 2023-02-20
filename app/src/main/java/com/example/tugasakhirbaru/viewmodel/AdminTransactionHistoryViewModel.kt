@@ -12,7 +12,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 
-class PurchaseHistoryViewModel(
+class AdminTransactionHistoryViewModel(
     private val databaseTransaction: DatabaseReference,
     val auth: FirebaseAuth
 ) : ObservableViewModel() {
@@ -27,7 +27,6 @@ class PurchaseHistoryViewModel(
         }
 
     fun getMenuData() {
-        val user = auth.currentUser?.uid
         databaseTransaction.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val listData = arrayListOf<TransactionMenu>()
@@ -35,9 +34,7 @@ class PurchaseHistoryViewModel(
                     for (dataSnapshot in snapshot.children) {
                         val transactionData = dataSnapshot.getValue(TransactionMenu::class.java)
                         if (transactionData != null){
-                            if (transactionData.uid == user){
                                 listData.add(transactionData)
-                            }
                         }
 
 

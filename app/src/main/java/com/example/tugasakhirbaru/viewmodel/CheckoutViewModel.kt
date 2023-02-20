@@ -1,11 +1,13 @@
 package com.example.tugasakhirbaru.viewmodel
 
+import android.app.Activity
 import androidx.databinding.Bindable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.tugasakhirbaru.BR
 import com.example.tugasakhirbaru.model.*
 import com.example.tugasakhirbaru.repository.UserPreference
+import com.example.tugasakhirbaru.util.Dialog
 import com.example.tugasakhirbaru.util.ObservableViewModel
 import com.example.tugasakhirbaru.util.ViewModelListener
 import com.example.tugasakhirbaru.util.constants.Constants.OPEN_HOME
@@ -18,7 +20,7 @@ class CheckoutViewModel(
     private val auth: FirebaseAuth,
     private val databaseCart: DatabaseReference,
     private val databaseTransaction: DatabaseReference,
-    private val userPreference: UserPreference,
+    val userPreference: UserPreference,
     private val listener: ViewModelListener
 ) : ObservableViewModel() {
 
@@ -66,16 +68,12 @@ class CheckoutViewModel(
 
     fun transaction() {
 
+
         val timestamp = Calendar.getInstance().time
         val userData = userPreference.getUser()
         val id = databaseTransaction.push().key ?: ""
         val dbTransaction = databaseTransaction.child(id)
         val additionData = mutableMapOf<String, Any>()
-
-        if (userData.isDataBlank()){
-           listener.showMessage("Data anda masih kosong")
-            return
-        }
 
         additionData["id"] = id
         additionData["date"] = timestamp.toString()
@@ -86,9 +84,19 @@ class CheckoutViewModel(
         additionData["totalCalories"] = cart.totalCalories()
         additionData["quantity"] = cart.totalQuantity()
         additionData["uid"] = auth.currentUser!!.uid
-        dbTransaction.setValue(cart)
-        dbTransaction.updateChildren(userData.toHashMap(userData.alamat,userData.username,userData.phone))
-        dbTransaction.updateChildren(additionData)
+        dbTransaction.setValue(cart
+        ) { error, _ ->
+            if (error == null) {
+                dbTransaction.updateChildren(
+                    userData.toHashMap(
+                        userData.alamat,
+                        userData.username,
+                        userData.phone
+                    )
+                )
+                dbTransaction.updateChildren(additionData)
+            }
+        }
     }
 
     fun updateItem(item: Menu) {

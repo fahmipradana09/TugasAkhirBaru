@@ -1,6 +1,6 @@
 package com.example.tugasakhirbaru.viewmodel
 
-import android.util.Log
+import android.app.Activity
 import androidx.databinding.Bindable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -13,6 +13,9 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AdminViewModel(
     val auth: FirebaseAuth,
@@ -24,12 +27,20 @@ class AdminViewModel(
     val listData: LiveData<List<TransactionMenu>> = mutableListData
     val transactionsList = mutableListOf<TransactionMenu>()
 
+    companion object {
+        const val OPEN_LIST_TRANSACTION = "open_listTransaction"
+    }
+
     @Bindable
     var trans = TransactionMenu()
         set(value) {
             field = value
             notifyPropertyChanged(BR.item)
         }
+
+    fun openHistoryTransaction() {
+        listener.navigateTo(OPEN_LIST_TRANSACTION)
+    }
 
 
     fun getOrder() {
@@ -40,13 +51,16 @@ class AdminViewModel(
                     val itemList = transaction.getValue(TransactionMenu::class.java)
                     if (itemList != null) {
                         transactionsList.add(itemList)
-                        Log.i("tes", "$itemList, $transactionsList")
 
                     }
                 }
-                val doneTransactions = transactionsList.filter { it.status != "Done" }
 
-                mutableListData.postValue(doneTransactions)
+                val doneTransactions = transactionsList.filter { it.status != "Done" }
+                val dateFormat: DateFormat =
+                    SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.getDefault())
+                val sortedDate = doneTransactions.sortedByDescending { dateFormat.parse(it.date) }
+
+                mutableListData.postValue(sortedDate)
                 notifyPropertyChanged(BR.item)
             }
 

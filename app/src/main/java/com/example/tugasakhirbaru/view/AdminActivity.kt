@@ -9,10 +9,13 @@ import com.example.tugasakhirbaru.R
 import com.example.tugasakhirbaru.adapter.AdminAdapter
 import com.example.tugasakhirbaru.databinding.ActivityAdminDashboardBinding
 import com.example.tugasakhirbaru.model.Menu
+import com.example.tugasakhirbaru.util.KotlinExt.openAdminListTransactionActivity
+import com.example.tugasakhirbaru.util.KotlinExt.openEditIngredient
 import com.example.tugasakhirbaru.util.KotlinExt.openLoginActivity
 import com.example.tugasakhirbaru.util.ViewModelListener
 import com.example.tugasakhirbaru.util.constants.DatabasePath
 import com.example.tugasakhirbaru.viewmodel.AdminViewModel
+import com.example.tugasakhirbaru.viewmodel.DetailMenuViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
@@ -79,7 +82,9 @@ class AdminActivity : AppCompatActivity(), ViewModelListener, AdminAdapter.Liste
     }
 
     override fun navigateTo(param: String) {
-        TODO("Not yet implemented")
+        if (param == AdminViewModel.OPEN_LIST_TRANSACTION) {
+            openAdminListTransactionActivity()
+        }
     }
 
     override fun updateItem(item: Menu) {

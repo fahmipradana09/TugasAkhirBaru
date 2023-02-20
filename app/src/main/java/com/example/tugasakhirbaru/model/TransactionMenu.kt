@@ -20,6 +20,12 @@ data class TransactionMenu(
     var totalFat: Double = 0.0,
     var totalProtein: Double = 0.0
 ) : Parcelable{
+
+    @Exclude
+    fun menuInString(): String {
+        return orderList.values.joinToString(separator = ", ") { it.menu }
+    }
+
     @Exclude
     fun totalCaloriesInString(): String {
         return String.format("%.2f kkal", totalCalories)

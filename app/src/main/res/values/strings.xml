@@ -81,6 +81,9 @@
     <string name="prepared">Prepared</string>
     <string name="progress">Progress</string>
     <string name="done">Done</string>
+    <string name="Username">Username :</string>
+    <string name="lengkapiData">Lengkapi Data Anda Terlebih Dahulu</string>
+    <string name="Menu">Menu :</string>
 
     <string-array name="filter_makanan">
         <item>A-Z</item>
@@ -89,11 +92,11 @@
         <item>Low Calorie</item>
         <item>High Calorie</item>
 
-<!--        <item>Low Carbo</item>-->
-<!--        <item>High Carbo</item>-->
-<!--        -->
-<!--        <item>Low Protein</item>-->
-<!--        <item>High Protein</item>-->
+        <!--        <item>Low Carbo</item>-->
+        <!--        <item>High Carbo</item>-->
+        <!--        -->
+        <!--        <item>Low Protein</item>-->
+        <!--        <item>High Protein</item>-->
 
     </string-array>
 
@@ -102,6 +105,7 @@
         <item>Prepared</item>
         <item>OnProgress</item>
         <item>Done</item>
+        <item>Cancle</item>
 
     </string-array>
 </resources>

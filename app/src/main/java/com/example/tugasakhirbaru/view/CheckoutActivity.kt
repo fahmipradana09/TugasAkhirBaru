@@ -7,8 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tugasakhirbaru.adapter.MenuCartAdapter
 import com.example.tugasakhirbaru.databinding.ActivityCheckoutBinding
-import com.example.tugasakhirbaru.helper.Dialog.showDialogSuccess
 import com.example.tugasakhirbaru.repository.UserPreference
+import com.example.tugasakhirbaru.util.Dialog.showDialogDenial
+import com.example.tugasakhirbaru.util.Dialog.showDialogSuccess
+import com.example.tugasakhirbaru.util.KotlinExt.openCheckoutActivity
 import com.example.tugasakhirbaru.util.KotlinExt.openHomeActivity
 import com.example.tugasakhirbaru.util.ViewModelListener
 import com.example.tugasakhirbaru.util.constants.Constants.OPEN_HOME
@@ -44,16 +46,25 @@ class CheckoutActivity : AppCompatActivity(), ViewModelListener, MenuCartAdapter
 
         viewModel.listData.observe(this) { list ->
             adapter.setData(list)
-            if (list.isEmpty()){
+            if (list.isEmpty()) {
                 binding.tvEmptyList.visibility = View.VISIBLE
-            }else{
+            } else {
                 binding.tvEmptyList.visibility = View.GONE
             }
         }
 
         binding.btnBayar.setOnClickListener {
-            viewModel.transaction()
-            showDialogSuccess(callback = { openHomeActivity() })
+            val userData = viewModel.userPreference.getUser()
+            if (userData.isDataBlank()) {
+                showDialogDenial(callback = {
+                    openCheckoutActivity()
+                    finish()
+                })
+            } else {
+                viewModel.transaction()
+                showDialogSuccess(callback = { openHomeActivity() })
+            }
+
         }
 
         viewModel.getUserCart()
@@ -68,10 +79,11 @@ class CheckoutActivity : AppCompatActivity(), ViewModelListener, MenuCartAdapter
     }
 
     override fun navigateTo(param: String) {
-        if(param == OPEN_HOME){
+        if (param == OPEN_HOME) {
             openHomeActivity()
         }
     }
+
     override fun updateItem(item: com.example.tugasakhirbaru.model.Menu) {
         viewModel.updateItem(item)
     }
