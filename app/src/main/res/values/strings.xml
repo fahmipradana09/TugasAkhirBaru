@@ -84,6 +84,19 @@
     <string name="Username">Username :</string>
     <string name="lengkapiData">Lengkapi Data Anda Terlebih Dahulu</string>
     <string name="Menu">Menu :</string>
+    <string name="historiPurchase">History Purchase</string>
+    <string name="historiTransaction">History Transaction</string>
+    <string name="uploadBukti">Upload Bukti Pembayaran</string>
+    <string name="gallery">Gallery</string>
+    <string name="camera">Camera</string>
+    <string name="confirmPayment">Confirm Payment</string>
+    <string name="Pending">Pending</string>
+    <string name="statusPembayaran">Status Pembayaran :</string>
+    <string name="imageSelected">Image Selected</string>
+    <string name="successfullyUploaded">Successfully Uploaded</string>
+    <string name="failedUploaded">Failed Upload</string>
+    <string name="emptyFile">Upload File First</string>
+    <string name="failedFetchingFile">Failed to Retrieve the Image</string>
 
     <string-array name="filter_makanan">
         <item>A-Z</item>
@@ -91,13 +104,11 @@
 
         <item>Low Calorie</item>
         <item>High Calorie</item>
-
         <!--        <item>Low Carbo</item>-->
         <!--        <item>High Carbo</item>-->
         <!--        -->
         <!--        <item>Low Protein</item>-->
         <!--        <item>High Protein</item>-->
-
     </string-array>
 
     <string-array name="status_transaction">
@@ -105,7 +116,13 @@
         <item>Prepared</item>
         <item>OnProgress</item>
         <item>Done</item>
-        <item>Cancle</item>
+        <item>Cancel</item>
+    </string-array>
 
+    <string-array name="status_pembayaran">
+        <item>-- Pilih Status --</item>
+        <item>Pending</item>
+        <item>Done</item>
+        <item>Cancel</item>
     </string-array>
 </resources>

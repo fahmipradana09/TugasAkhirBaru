@@ -15,7 +15,8 @@ data class Menu(
     val default: List<Boolean> = arrayListOf(),
     val mandatory: List<Boolean> = arrayListOf(),
     var quantity: Int = 1,
-    val detailIngredient: ArrayList<ComponentChecklist> = arrayListOf()
+    val detailIngredient: ArrayList<ComponentChecklist> = arrayListOf(),
+    var calorie : String = ""
 ) : Parcelable {
     @Exclude
     fun priceInRupiah() = "Rp ${totalPrice()}"
@@ -39,6 +40,11 @@ data class Menu(
 
     @Exclude
     fun quantityInString() = quantity.toString()
+
+    @Exclude
+    fun quantityInStringWithX() : String{
+        return "x${quantityInString()}"
+    }
 
     @Exclude
     fun totalPrice() = price * quantity
@@ -84,19 +90,6 @@ data class Menu(
     }
 
     @Exclude
-    fun toHashMap(
-        totalCarbo: Double,
-        totalProtein: Double,
-        totalFat: Double,
-        totalCalories: Double
-    ): HashMap<String, Any?> = hashMapOf(
-        "totalCarbo" to totalCarbo,
-        "totalProtein" to totalProtein,
-        "totalFat" to totalFat,
-        "totalCalories" to totalCalories
-    )
-
-    @Exclude
     fun totalCalories(): Double {
         val total = totalCaloriesIngredient() * quantity
         return total
@@ -138,6 +131,11 @@ data class Menu(
     @Exclude
     fun totalCarboInString(): String {
         return String.format("%.2f g", totalCarbo())
+    }
+
+    @Exclude
+    fun calorieWithKkalMenu(): String{
+        return "Calorie : $calorie kkal"
     }
 
 

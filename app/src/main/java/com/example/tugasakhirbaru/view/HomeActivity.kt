@@ -1,6 +1,7 @@
 package com.example.tugasakhirbaru.view
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -71,7 +72,7 @@ class HomeActivity : AppCompatActivity(), ViewModelListener {
         }
 
         viewModel.getMenuData()
-        viewModel.getHorzontalData()
+        viewModel.getHorizontalData()
     }
 
     private fun setupMenu() {

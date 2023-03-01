@@ -8,6 +8,7 @@ import com.example.tugasakhirbaru.databinding.PurchasehistoryItemBinding
 import com.example.tugasakhirbaru.databinding.TransactionItemBinding
 import com.example.tugasakhirbaru.model.Menu
 import com.example.tugasakhirbaru.model.TransactionMenu
+import com.example.tugasakhirbaru.util.KotlinExt.openConfirmPaymentActivity
 
 class HistoryPurchaseAdapter(private val context: Context, private val listener: Listener) :
     RecyclerView.Adapter<HistoryPurchaseAdapter.HistoryPurchaseViewHolder>() {
@@ -29,10 +30,10 @@ class HistoryPurchaseAdapter(private val context: Context, private val listener:
     override fun onBindViewHolder(holder: HistoryPurchaseViewHolder, position: Int) {
         val item = menuList[position]
         holder.binding.item = item
-
         holder.binding.cardMenuBought.setOnClickListener {
-//            context.openDetailActivity(item)
+            context.openConfirmPaymentActivity(item)
         }
+
     }
 
     override fun getItemCount(): Int = menuList.size

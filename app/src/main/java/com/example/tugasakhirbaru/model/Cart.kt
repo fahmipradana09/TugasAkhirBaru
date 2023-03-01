@@ -1,13 +1,13 @@
 package com.example.tugasakhirbaru.model
 
 import android.os.Parcelable
-import android.util.Log
 import com.google.firebase.database.Exclude
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Cart (
-    var status : String = "prepared",
+    var statusMakanan : String = "Prepared",
+    var statusPembayaran : String = "Pending",
     val orderList: HashMap<String, Menu> = hashMapOf(),
     val totalPrice :Long =0L,
     val quantity :Int = 0,

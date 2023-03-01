@@ -7,4 +7,5 @@ object Constants {
     const val OPEN_ADMIN = "open_admin"
     const val PREFIX_ORDER = "Order #"
     const val PREFIX_EDIT = "(EDITED)"
+    const val TIMESTAMP_FORMAT = "dd-MM-yyyy HH:mm:ss"
 }

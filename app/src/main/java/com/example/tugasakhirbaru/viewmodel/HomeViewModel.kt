@@ -56,7 +56,7 @@ class HomeViewModel(
 
     }
 
-    fun getHorzontalData() {
+    fun getHorizontalData() {
         val componentList = arrayListOf<Component>()
         databaseComponent.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {

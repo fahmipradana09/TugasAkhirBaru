@@ -45,7 +45,7 @@
                 android:id="@+id/LLMenuKeranjang"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="center|start"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -77,8 +77,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{item.status}"
-                        android:layout_marginTop="10dp"
+                        android:text="@{item.statusMakanan}"
+                        android:layout_gravity="center|bottom"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         tools:text = "@string/status" />
@@ -200,6 +200,35 @@
                 </LinearLayout>
 
             </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="3dp"
+                android:background="#000" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center|start"
+                    android:textColor="@color/black"
+                    android:text="@string/statusPembayaran"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@{item.statusPembayaran}"
+                    android:gravity="center_horizontal"
+                    tools:text="@string/Pending"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </layout>

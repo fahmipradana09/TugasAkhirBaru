@@ -6,11 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.tugasakhirbaru.databinding.DetailAdminItemBinding
-import com.example.tugasakhirbaru.databinding.PurchasehistoryItemBinding
-import com.example.tugasakhirbaru.databinding.TransactionItemBinding
 import com.example.tugasakhirbaru.model.Menu
-import com.example.tugasakhirbaru.model.TransactionMenu
-import com.example.tugasakhirbaru.util.KotlinExt.openAdminDetailActivity
 
 class DetailAdminAdapter(private val context: Context, private val listener: Listener) :
     RecyclerView.Adapter<DetailAdminAdapter.DetailAdminViewHolder>() {

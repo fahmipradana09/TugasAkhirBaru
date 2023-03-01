@@ -10,17 +10,13 @@ import com.example.tugasakhirbaru.util.ObservableViewModel
 import com.example.tugasakhirbaru.util.ViewModelListener
 import com.google.firebase.database.DatabaseReference
 
-class AdminDetailMenuViewModel(
+class AdminConfirmViewModel(
     private val transactionDatabase: DatabaseReference,
     private val listener: ViewModelListener,
 ) : ObservableViewModel() {
 
     private val mutableDataMenu: MutableLiveData<Menu> = MutableLiveData()
     val dataMenu: LiveData<Menu> = mutableDataMenu
-
-    companion object {
-        const val OPEN_CONFIRM_ADMIN = "open_confirm_admin"
-    }
 
     @Bindable
     var item = TransactionMenu()
@@ -29,22 +25,19 @@ class AdminDetailMenuViewModel(
             notifyPropertyChanged(BR.item)
         }
 
-    fun openAdminConfirm() {
-        listener.navigateTo(OPEN_CONFIRM_ADMIN)
-    }
 
-
-    fun updateStatusMakanan(statusMakanan: String) {
+    fun updateStatusPembayaran(statusPembayaran: String) {
         // Update value dari status salah satu transaksi
-        if (statusMakanan.isBlank()) {
+        if (statusPembayaran.isBlank()) {
             return
         }
         transactionDatabase.child(item.id)
-            .updateChildren(mapOf("statusMakanan" to statusMakanan))
+            .updateChildren(mapOf("statusPembayaran" to statusPembayaran))
             .addOnCompleteListener {
                listener.showMessage("Status Telah Diganti")
             }
     }
+
 
 
 }

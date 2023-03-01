@@ -59,6 +59,12 @@
         <activity
             android:name=".view.AdminDetailMenuActivity"
             android:exported="false" />
+        <activity
+            android:name=".view.ConfirmPaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.AdminConfirmActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

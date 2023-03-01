@@ -8,8 +8,10 @@ import com.example.tugasakhirbaru.BR
 import com.example.tugasakhirbaru.model.*
 import com.example.tugasakhirbaru.repository.UserPreference
 import com.example.tugasakhirbaru.util.Dialog
+import com.example.tugasakhirbaru.util.KotlinExt.convertToFormat
 import com.example.tugasakhirbaru.util.ObservableViewModel
 import com.example.tugasakhirbaru.util.ViewModelListener
+import com.example.tugasakhirbaru.util.constants.Constants
 import com.example.tugasakhirbaru.util.constants.Constants.OPEN_HOME
 import com.example.tugasakhirbaru.util.constants.DatabasePath
 import com.google.firebase.auth.FirebaseAuth
@@ -67,16 +69,14 @@ class CheckoutViewModel(
 
 
     fun transaction() {
-
-
-        val timestamp = Calendar.getInstance().time
+        val timestamp = Calendar.getInstance().convertToFormat(Constants.TIMESTAMP_FORMAT)
         val userData = userPreference.getUser()
         val id = databaseTransaction.push().key ?: ""
         val dbTransaction = databaseTransaction.child(id)
         val additionData = mutableMapOf<String, Any>()
 
         additionData["id"] = id
-        additionData["date"] = timestamp.toString()
+        additionData["date"] = timestamp
         additionData["totalPrice"] = cart.totalPrice()
         additionData["totalProtein"] = cart.totalProtein()
         additionData["totalCarbo"] = cart.totalCarbo()

@@ -21,12 +21,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:menuVisible="@{true}"/>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
     <TextView
         android:id="@+id/textView"
@@ -42,33 +48,56 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/orderList"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="30dp"
             tools:itemCount="4"
             tools:listitem="@layout/transaction_item" />
 
-    <Button
-        android:id="@+id/btnMenuTerjual"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:paddingTop="0dp"
-        android:paddingBottom="0dp"
-        android:textSize="16sp"
-        android:text="@string/menuyangterjual"
-        android:textColor="@color/black"
-        android:onClick="@{() -> viewModel.openHistoryTransaction()}"
-        android:drawableLeft="@drawable/ic_baseline_show_chart_24"
-        android:drawableRight="@drawable/ic_baseline_show_chart_24"
-        app:layout_constraintTop_toBottomOf="@id/orderList"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/roundedsquare"/>
-    </LinearLayout>
+        <Button
+            android:id="@+id/btnMenuTerjual"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+            android:textSize="16sp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/menuyangterjual"
+            android:textColor="@color/black"
+            android:onClick="@{() -> viewModel.openHistoryTransaction()}"
+            android:drawableLeft="@drawable/ic_baseline_show_chart_24"
+            android:drawableRight="@drawable/ic_baseline_show_chart_24"
+            app:layout_constraintTop_toBottomOf="@id/orderList"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/roundedsquare"/>
 
+
+        <Button
+            android:id="@+id/btn_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+            android:textSize="16sp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/confirmPayment"
+            android:textColor="@color/black"
+            android:onClick="@{() -> viewModel.openHistoryTransaction()}"
+            android:drawableLeft="@drawable/ic_baseline_check_circle_outline_24"
+            android:drawableRight="@drawable/ic_baseline_check_circle_outline_24"
+            app:layout_constraintTop_toBottomOf="@id/orderList"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/roundedsquare"/>
+    </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

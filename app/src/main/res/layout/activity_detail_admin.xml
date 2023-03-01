@@ -29,7 +29,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/spinner">
+        app:layout_constraintBottom_toTopOf="@id/LLPembayaran">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,6 +55,37 @@
                 tools:itemCount="2"/>
         </LinearLayout>
     </ScrollView>
+    <LinearLayout
+        android:id="@+id/LLPembayaran"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/scrollView"
+        app:layout_constraintBottom_toTopOf="@id/spinner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginEnd="10dp"
+            android:onClick="@{() -> viewModel.openAdminConfirm()}"
+            android:src="@drawable/ic_baseline_error_24" />
+        <TextView
+            android:id="@+id/tvConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/confirmPayment"
+            android:onClick="@{() -> viewModel.openAdminConfirm()}"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"
@@ -68,7 +99,7 @@
         android:entries="@array/status_transaction"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView"
+        app:layout_constraintTop_toBottomOf="@+id/LLPembayaran"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 

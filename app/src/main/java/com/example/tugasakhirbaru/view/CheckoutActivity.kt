@@ -62,7 +62,10 @@ class CheckoutActivity : AppCompatActivity(), ViewModelListener, MenuCartAdapter
                 })
             } else {
                 viewModel.transaction()
-                showDialogSuccess(callback = { openHomeActivity() })
+                showDialogSuccess(callback = {
+                    openHomeActivity()
+                    finish()
+                })
             }
 
         }

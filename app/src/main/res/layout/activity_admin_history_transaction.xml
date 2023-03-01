@@ -13,8 +13,7 @@
         android:layout_height="54dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -33,7 +32,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/purchase"
+                android:text="@string/historiTransaction"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="30dp"
                 android:textColor="@color/black"

@@ -1,7 +1,7 @@
 package com.example.tugasakhirbaru.view
 
+import android.app.ProgressDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
@@ -13,10 +13,12 @@ import com.example.tugasakhirbaru.databinding.ActivityDetailAdminBinding
 import com.example.tugasakhirbaru.model.Menu
 import com.example.tugasakhirbaru.model.TransactionMenu
 import com.example.tugasakhirbaru.util.KotlinExt.getByValue
+import com.example.tugasakhirbaru.util.KotlinExt.openAdminConfirmPaymentActivity
 import com.example.tugasakhirbaru.util.KotlinExt.toHashMap
 import com.example.tugasakhirbaru.util.ViewModelListener
 import com.example.tugasakhirbaru.util.constants.DatabasePath
 import com.example.tugasakhirbaru.util.constants.IntentNameExtra.TRANSACTION_EXTRA
+import com.example.tugasakhirbaru.viewmodel.AdminConfirmViewModel
 import com.example.tugasakhirbaru.viewmodel.AdminDetailMenuViewModel
 import com.google.firebase.database.FirebaseDatabase
 
@@ -54,12 +56,10 @@ class AdminDetailMenuActivity : AppCompatActivity(), ViewModelListener,
 
         item?.let { data ->
             viewModel.item = data
-
             adapter.setData(data.orderList.values.toList())
-
-            val position = statusMap.getByValue(data.status) ?: 0
-            Log.d("tes", "Status transaksi: ${data.status}")
-            Log.d("tes", "Position: $position")
+            val position = statusMap.getByValue(data.statusMakanan) ?: 0
+           /* Log.d("tes", "Status transaksi: ${data.statusMakanan}")
+            Log.d("tes", "Position: $position")*/
             binding.spinner.setSelection(position)
         }
 
@@ -69,7 +69,7 @@ class AdminDetailMenuActivity : AppCompatActivity(), ViewModelListener,
                 parent: AdapterView<*>?, view: View?, position: Int, id: Long
             ) {
                 if (position > 0) {
-                    viewModel.updateStatus(statusMap[position] ?: "")
+                    viewModel.updateStatusMakanan(statusMap[position] ?: "")
                 }
             }
 
@@ -84,6 +84,9 @@ class AdminDetailMenuActivity : AppCompatActivity(), ViewModelListener,
     }
 
     override fun navigateTo(param: String) {
+        if (param == AdminDetailMenuViewModel.OPEN_CONFIRM_ADMIN){
+            openAdminConfirmPaymentActivity(viewModel.item)
+        }
     }
 
     override fun updateItem(item: Menu) {
