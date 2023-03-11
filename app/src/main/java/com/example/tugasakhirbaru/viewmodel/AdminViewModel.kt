@@ -54,7 +54,7 @@ class AdminViewModel(
                     }
                 }
 
-                val doneTransactions = transactionsList.filter { it.statusMakanan != "Done" }
+                val doneTransactions = transactionsList.filter {it.statusMakanan == "Prepared" || it.statusMakanan == "OnProgress"}
                 val dateFormat: DateFormat =
                     SimpleDateFormat(Constants.TIMESTAMP_FORMAT, Locale.getDefault())
                 val sortedDate = doneTransactions.sortedByDescending { dateFormat.parse(it.date) }

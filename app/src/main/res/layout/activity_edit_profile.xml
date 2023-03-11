@@ -73,7 +73,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/tvEmailRegist"
+        app:layout_constraintTop_toBottomOf="@id/tfUsername"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -96,39 +96,6 @@
             android:textSize="12sp"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/tvEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:text="@string/email"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/tfUsername"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tvEmailRegist"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:hintAnimationEnabled="false"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEmail">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="@{item.email}"
-            android:textSize="12sp"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/tvPhoneNumber"

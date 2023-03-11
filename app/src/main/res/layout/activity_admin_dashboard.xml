@@ -76,28 +76,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:background="@drawable/roundedsquare"/>
 
-
-        <Button
-            android:id="@+id/btn_confirm"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
-            android:paddingTop="0dp"
-            android:paddingBottom="0dp"
-            android:textSize="16sp"
-            android:layout_marginBottom="10dp"
-            android:text="@string/confirmPayment"
-            android:textColor="@color/black"
-            android:onClick="@{() -> viewModel.openHistoryTransaction()}"
-            android:drawableLeft="@drawable/ic_baseline_check_circle_outline_24"
-            android:drawableRight="@drawable/ic_baseline_check_circle_outline_24"
-            app:layout_constraintTop_toBottomOf="@id/orderList"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:background="@drawable/roundedsquare"/>
-    </LinearLayout>
-    </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

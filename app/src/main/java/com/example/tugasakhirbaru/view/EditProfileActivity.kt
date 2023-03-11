@@ -34,10 +34,9 @@ class EditProfileActivity : AppCompatActivity(), ViewModelListener {
 
         binding.btnEditProfil.setOnClickListener {
             val username = binding.etUsername.text.toString()
-            val email = binding.etEmail.text.toString()
             val alamat = binding.etAlamat.text.toString()
             val phone = binding.etPhone.text.toString()
-            userUpdate(username, email, alamat, phone)
+            userUpdate(username, alamat, phone)
             finish()
         }
 
@@ -63,11 +62,10 @@ class EditProfileActivity : AppCompatActivity(), ViewModelListener {
                         val email = snapshot.child("email").value.toString()
                         val username = snapshot.child("username").value.toString()
                         val password = snapshot.child("password").value.toString()
-                        val alamat = snapshot.child("alamat").value.toString()
                         val phone = snapshot.child("phone").value.toString()
-                        val user = Users(email= email, username = username, password = password, alamat = alamat, phone = phone)
+                        val user = Users(email= email, username = username, password = password,phone = phone)
                         Log.d("tes", "user : $user")
-                        userPreference.saveUser(user!!)
+                        userPreference.saveUser(user)
                         binding.item = user
                     }
                 }
@@ -79,10 +77,9 @@ class EditProfileActivity : AppCompatActivity(), ViewModelListener {
         })
     }
 
-    fun userUpdate(username: String, email: String, alamat: String, phone: String) {
+    fun userUpdate(username: String, alamat: String, phone: String) {
         val userId = auth.currentUser?.uid
         val user = mapOf<String, String>(
-            "email" to email,
             "username" to username,
             "alamat" to alamat,
             "phone" to phone

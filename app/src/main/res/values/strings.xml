@@ -97,6 +97,7 @@
     <string name="failedUploaded">Failed Upload</string>
     <string name="emptyFile">Upload File First</string>
     <string name="failedFetchingFile">Failed to Retrieve the Image</string>
+    <string name="name">Name</string>
 
     <string-array name="filter_makanan">
         <item>A-Z</item>
